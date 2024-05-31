@@ -1,63 +1,63 @@
 #!/usr/bin/python3
-""" Session API endpoints """
+""" Center API endpoints """
 
 from flask import abort, request
-from models.session import Session
+from models.center import Center
 from models import storage
 from api.v1.views import app_views, format_response
 
 
-@app_views.route("/sessions", methods=['GET'], strict_slashes=False)
-@app_views.route("/sessions/<session_id>", methods=['GET'], strict_slashes=False)
-def get_sessions(session_id=None):
-    if session_id:
-        session = storage.get(Session, session_id)
-        if session:
-            return session.to_dict()
+@app_views.route("/centers", methods=['GET'], strict_slashes=False)
+@app_views.route("/centers/<center_id>", methods=['GET'], strict_slashes=False)
+def get_centers(center_id=None):
+    if center_id:
+        center = storage.get(Center, center_id)
+        if center:
+            return center.to_dict()
         abort(404)
 
-    """get all sessions"""
-    sessions = [obj.to_dict() for obj in storage.all(Session).values()]
-    return format_response(sessions)
+    """get all centers"""
+    centers = [obj.to_dict() for obj in storage.all(Center).values()]
+    return format_response(centers)
 
 
-@app_views.route("/sessions/<session_id>", methods=['DELETE'],
+@app_views.route("/centers/<center_id>", methods=['DELETE'],
                  strict_slashes=False)
-def delete_session(session_id):
-    """ deletes a session by id if it exist else raise 404"""
-    session = storage.get(Session, session_id)
-    if session:
-        session.delete()
+def delete_center(center_id):
+    """ deletes a center by id if it exist else raise 404"""
+    center = storage.get(Center, center_id)
+    if center:
+        center.delete()
         storage.save()
         return {}
     abort(404)
 
 
-@app_views.route("/sessions", methods=['POST'], strict_slashes=False)
-def create_session():
-    """method to create a new session"""
+@app_views.route("/centers", methods=['POST'], strict_slashes=False)
+def create_center():
+    """method to create a new center"""
     data = request.get_json(silent=True)
     if data is None:
         abort(400, "Not a JSON")
     if 'center_name' not in data:
         abort(400, "Missing center_name")
-    session = Session(**data)
-    session.save()
+    center = Center(**data)
+    center.save()
 
-    return session.to_dict(), 201
+    return center.to_dict(), 201
 
 
-@app_views.route("/sessions/<session_id>", methods=['PUT'], strict_slashes=False)
-def update_session(session_id):
-    """method to update session by id"""
+@app_views.route("/centers/<center_id>", methods=['PUT'], strict_slashes=False)
+def update_center(center_id):
+    """method to update center by id"""
     data = request.get_json(silent=True)
     if data is None:
         abort(400, "Not a JSON")
-    session = storage.get(Session, session_id)
-    if session:
+    center = storage.get(Center, center_id)
+    if center:
         for key, val in data.items():
             if key not in ["id", "created_at", "updated_at"]:
-                setattr(session, key, val)
-        session.save()
-        return session.to_dict(), 200
+                setattr(center, key, val)
+        center.save()
+        return center.to_dict(), 200
     abort(404)

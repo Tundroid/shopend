@@ -13,9 +13,10 @@ import models
 # from models.user import User
 from models.session import Session
 from models.subject import Subject
+from models.center import Center
 import shlex  # for splitting the line along spaces except in double quotes
 
-classes = {"Session": Session, "Subject": Subject}
+classes = {"Session": Session, "Subject": Subject, "Center": Center}
 
 
 class CGCEBCommand(cmd.Cmd):
