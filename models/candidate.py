@@ -1,5 +1,6 @@
 #!/usr/bin/python
-""" holds class Candidate"""
+""" Candidate class """
+
 import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
@@ -7,7 +8,7 @@ import uuid
 
 
 class Candidate(BaseModel, Base):
-    """Representation of candidate """
+    """ Representation of Candidate """
     if models.storage_t == "db":
         __tablename__ = 'candidate'
 
@@ -20,5 +21,5 @@ class Candidate(BaseModel, Base):
         year = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes candidate"""
+        """ Candidate initialization """
         super().__init__(*args, **kwargs)

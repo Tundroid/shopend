@@ -1,12 +1,13 @@
 #!/usr/bin/python
-""" holds class Center"""
+""" Center class """
+
 import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, UniqueConstraint
 
 
 class Center(BaseModel, Base):
-    """Representation of center """
+    """ Representation of Center """
     if models.storage_t == "db":
         __tablename__ = 'center'
 
@@ -18,5 +19,5 @@ class Center(BaseModel, Base):
         title = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes center"""
+        """ Center initialization """
         super().__init__(*args, **kwargs)

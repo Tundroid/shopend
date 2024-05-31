@@ -5,17 +5,24 @@ Contains the class DBStorage
 
 import models
 from models.base_model import BaseModel, Base
+from models.exam import Exam
+from models.candidate import Candidate
 from models.session import Session
 from models.subject import Subject
-from models.exam import Exam
 from models.center import Center
-from models.candidate import Candidate
+from models.exam_subject import ExamSubject
+from models.exam_session import ExamSession
+from models.exam_center import ExamCenter
+from models.exam_registration import ExamRegistration
+from models.subject_registration import SubjectRegistration
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Center,
-           "Candidate": Candidate}
+           "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
+           "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
+           "SubjectRegistration": SubjectRegistration}
 
 
 class DBStorage:

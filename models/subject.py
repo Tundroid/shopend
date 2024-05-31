@@ -1,5 +1,6 @@
 #!/usr/bin/python
-""" holds class Subject"""
+""" Subject class """
+
 import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, UniqueConstraint
@@ -7,7 +8,7 @@ import uuid
 
 
 class Subject(BaseModel, Base):
-    """Representation of subject """
+    """ Representation of Subject """
     if models.storage_t == "db":
         __tablename__ = 'subject'
 
@@ -21,5 +22,5 @@ class Subject(BaseModel, Base):
         title = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes subject"""
+        """ Subject initialization """
         super().__init__(*args, **kwargs)

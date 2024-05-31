@@ -1,5 +1,6 @@
 #!/usr/bin/python
-""" holds class Session"""
+""" Session class """
+
 import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Boolean, UniqueConstraint
@@ -7,7 +8,7 @@ import uuid
 
 
 class Session(BaseModel, Base):
-    """Representation of session """
+    """ Representation of Session """
     if models.storage_t == "db":
         __tablename__ = 'session'
 
@@ -22,5 +23,5 @@ class Session(BaseModel, Base):
         year = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes session"""
+        """ Session initialization """
         super().__init__(*args, **kwargs)

@@ -1,5 +1,6 @@
 #!/usr/bin/python
-""" holds class Exam"""
+""" Exam class """
+
 import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, UniqueConstraint
@@ -7,7 +8,7 @@ import uuid
 
 
 class Exam(BaseModel, Base):
-    """Representation of exam """
+    """ Representation of Exam """
     if models.storage_t == "db":
         __tablename__ = 'exam'
 
@@ -23,5 +24,5 @@ class Exam(BaseModel, Base):
         title = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes exam"""
+        """ Exam initialization """
         super().__init__(*args, **kwargs)

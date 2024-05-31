@@ -4,19 +4,22 @@
 import cmd
 from datetime import datetime
 import models
-# from models.amenity import Amenity
-# from models.base_model import BaseModel
-# from models.city import City
-# from models.place import Place
-# from models.review import Review
-# from models.state import State
-# from models.user import User
+from models.exam import Exam
+from models.candidate import Candidate
 from models.session import Session
 from models.subject import Subject
 from models.center import Center
+from models.exam_subject import ExamSubject
+from models.exam_session import ExamSession
+from models.exam_center import ExamCenter
+from models.exam_registration import ExamRegistration
+from models.subject_registration import SubjectRegistration
 import shlex  # for splitting the line along spaces except in double quotes
 
-classes = {"Session": Session, "Subject": Subject, "Center": Center}
+classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Center,
+           "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
+           "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
+           "SubjectRegistration": SubjectRegistration}
 
 
 class CGCEBCommand(cmd.Cmd):
