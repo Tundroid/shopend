@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CGCEB_MYSQL_USER=cgceb_usr CGCEB_MYSQL_PWD=cgceb_pwd CGCEB_MYSQL_HOST=web-01.moleculesoft.tech CGCEB_MYSQL_DB=gce CGCEB_TYPE_STORAGE=db python3 ./console.py
+
+
+CGCEB_MYSQL_USER=cgceb_usr CGCEB_MYSQL_PWD=cgceb_pwd CGCEB_MYSQL_HOST=web-01.moleculesoft.tech CGCEB_MYSQL_DB=gce CGCEB_TYPE_STORAGE=db CGCEB_API_HOST=0.0.0.0 CGCEB_API_PORT=5000 python3 -m api.v1.app
