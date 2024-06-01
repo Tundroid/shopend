@@ -3,23 +3,29 @@
 
 from flask import jsonify
 
-from api.v1.views import app_views
+from api.v1.views import app_views, format_response
 from models import storage
-from models.amenity import Amenity
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+from models.exam import Exam
+from models.candidate import Candidate
+from models.session import Session
+from models.subject import Subject
+from models.center import Center
+from models.exam_subject import ExamSubject
+from models.exam_session import ExamSession
+from models.exam_center import ExamCenter
+from models.exam_registration import ExamRegistration
+from models.subject_registration import SubjectRegistration
 
-classes = {"amenities": Amenity, "cities": City,
-           "places": Place, "reviews": Review, "states": State, "users": User}
+classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Center,
+           "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
+           "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
+           "SubjectRegistration": SubjectRegistration}
 
 
 @app_views.route("/status", strict_slashes=False)
 def status():
     """Returns the status in JSON format"""
-    return {"status": "OK"}
+    return format_response({"status": "OK"})
 
 
 @app_views.route("/stats", strict_slashes=False)
@@ -28,4 +34,4 @@ def stats():
     stats_dict = {}
     for cls_name, cls in classes.items():
         stats_dict[cls_name] = storage.count(cls)
-    return jsonify(stats_dict)
+    return format_response(stats_dict)
