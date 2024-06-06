@@ -10,7 +10,8 @@ from models import storage
 from api.v1.views import app_views
 
 app = Flask(__name__)
-CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
+# CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(app_views)
 
 

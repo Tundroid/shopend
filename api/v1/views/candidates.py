@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Candidate API endpoints """
 
-from flask import abort, request
+from flask import abort, request, jsonify
 from models.candidate import Candidate
 from models import storage
 from api.v1.views import app_views, format_response
@@ -18,7 +18,10 @@ def get_candidates(candidate_id=None):
 
     """get all candidatedssss"""
     candidates = [obj.to_dict() for obj in storage.all(Candidate).values()]
-    return format_response(candidates)
+    response = jsonify(candidates)
+    # response.headers.add('Access-Control-Allow-Origin', '*')
+    # return format_response(candidates)
+    return response
 
 
 @app_views.route("/candidates/<candidate_id>", methods=['DELETE'],

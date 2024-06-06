@@ -13,8 +13,10 @@ from models.center import Center
 from models.exam_subject import ExamSubject
 from models.exam_session import ExamSession
 from models.exam_center import ExamCenter
+from models.admin import Admin
 from models.exam_registration import ExamRegistration
 from models.subject_registration import SubjectRegistration
+from models.view_exam_registration import ViewExamRegistration
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -22,7 +24,8 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Center,
            "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
            "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
-           "SubjectRegistration": SubjectRegistration}
+           "SubjectRegistration": SubjectRegistration, "Admin": Admin,
+           "ViewExamRegistration": ViewExamRegistration}
 
 
 class DBStorage:

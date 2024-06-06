@@ -3,7 +3,7 @@
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, UniqueConstraint
+from sqlalchemy import Column, String, UniqueConstraint, Boolean
 
 
 class Center(BaseModel, Base):
@@ -13,6 +13,7 @@ class Center(BaseModel, Base):
 
         center_no = Column(String(5), primary_key=True)
         center_name = Column(String(50), nullable=False)
+        is_open = Column(Boolean, nullable=False, default=False)
         __table_args__ = (UniqueConstraint('center_name', name='center_name_UNIQUE'),)
     else:
         subj_id = ""

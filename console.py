@@ -9,17 +9,20 @@ from models.candidate import Candidate
 from models.session import Session
 from models.subject import Subject
 from models.center import Center
+from models.admin import Admin
 from models.exam_subject import ExamSubject
 from models.exam_session import ExamSession
 from models.exam_center import ExamCenter
 from models.exam_registration import ExamRegistration
 from models.subject_registration import SubjectRegistration
+from models.view_exam_registration import ViewExamRegistration
 import shlex  # for splitting the line along spaces except in double quotes
 
 classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Center,
            "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
            "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
-           "SubjectRegistration": SubjectRegistration}
+           "SubjectRegistration": SubjectRegistration, "Admin": Admin,
+           "ViewExamRegistration": ViewExamRegistration}
 
 
 class CGCEBCommand(cmd.Cmd):
