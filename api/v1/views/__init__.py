@@ -19,3 +19,4 @@ from api.v1.views.exams import *
 from api.v1.views.candidates import *
 from api.v1.views.centers import *
 from api.v1.views.registrations import *
+from api.v1.views.candidate_subjects import *

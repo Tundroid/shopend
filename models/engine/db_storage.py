@@ -17,6 +17,7 @@ from models.admin import Admin
 from models.exam_registration import ExamRegistration
 from models.subject_registration import SubjectRegistration
 from models.view_exam_registration import ViewExamRegistration
+from models.view_subject_registration import ViewSubjectRegistration
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -25,7 +26,8 @@ classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Cente
            "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
            "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
            "SubjectRegistration": SubjectRegistration, "Admin": Admin,
-           "ViewExamRegistration": ViewExamRegistration}
+           "ViewExamRegistration": ViewExamRegistration,
+           "ViewSubjectRegistration": ViewSubjectRegistration}
 
 
 class DBStorage:
@@ -48,17 +50,20 @@ class DBStorage:
         if CGCEB_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
-    def all(self, cls=None):
+    def all(self, cls=None, cond=None):
         """query on the current database session"""
         new_dict = {}
         class_dict = classes.copy()
         if cls:
             class_dict = {cls.__class__.__name__: cls}
         for my_class in class_dict.values():
-            objs = self.__session.query(my_class).all()
+            if not cond:
+                objs = self.__session.query(my_class).all()
+            else:
+                objs = self.__session.query(my_class).filter(eval(cond)).all()
             for obj in objs:
                 obj_id = eval(f"obj.{inspect(my_class).primary_key[0].name}")
-                key = obj.__class__.__name__ + '.' + obj_id
+                key = f"{obj.__class__.__name__}.{obj_id}"
                 new_dict[key] = obj
         return (new_dict)
 
