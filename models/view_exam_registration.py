@@ -21,7 +21,8 @@ class ViewExamRegistration(BaseModel, Base):
 
         reg_id = Column(String(50), primary_key=True)
         candidate = Column(String(50))
-        exam_name = Column(String(5))
+        exam_id = Column(String(50))
+        exam_name = Column(String(50))
         exam_abbrev = Column(String(50))
         year = Column(Integer)
         is_complete = Column(MySQLBit)

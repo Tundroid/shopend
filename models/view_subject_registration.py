@@ -21,7 +21,7 @@ class ViewSubjectRegistration(BaseModel, Base):
 
         row_num = Column(Integer, primary_key=True)
         reg = Column(String(50))
-        code = Column(String(50))
+        code = Column(String(5))
         title = Column(String(50))
         subject_fee = Column(Integer)
         practical_fee = Column(Integer)
