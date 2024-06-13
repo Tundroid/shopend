@@ -21,13 +21,14 @@ def get_subject_registrations(exam_reg=None):
     return jsonify(subs)
 
 
-@app_views.route("/exams/<exam_id>", methods=['DELETE'],
-                 strict_slashes=False)
-def delete_exam(exam_id):
-    """ deletes a exam by id if it exist else raise 404"""
-    exam = storage.get(Exam, exam_id)
-    if exam:
-        exam.delete()
+@app_views.route("/subject_registrations/<sub_reg_id>", methods=['DELETE'], strict_slashes=False)
+def delete_subject_registration(sub_reg_id=None):
+    """ deletes a subject_registration by keys if it exist else raise 404"""
+
+    subj = storage.get(SubjectRegistration, sub_reg_id)
+    print(subj)
+    if subj:
+        subj.delete()
         storage.save()
         return {}
     abort(404)

@@ -19,7 +19,7 @@ class ViewSubjectRegistration(BaseModel, Base):
     if models.storage_t == "db":
         __tablename__ = 'view_subject_registration'
 
-        row_num = Column(Integer, primary_key=True)
+        id = Column(String(50), primary_key=True)
         reg = Column(String(50))
         code = Column(String(5))
         title = Column(String(50))

@@ -13,8 +13,9 @@ class SubjectRegistration(BaseModel, Base):
     if models.storage_t == "db":
         __tablename__ = 'subject_registration'
 
-        exam_reg = Column(String(50), ForeignKey('exam_registration.reg_id'), primary_key=True)
-        exam_subj = Column(String(5), ForeignKey('exam_subject.code'), primary_key=True)
+        id = Column(String(50), primary_key=True, default=lambda: str(uuid.uuid4()))
+        exam_reg = Column(String(50), ForeignKey('exam_registration.reg_id'))
+        exam_subj = Column(String(5), ForeignKey('exam_subject.code'))
 
         exam_registration_rel = relationship("ExamRegistration")
         exam_subject_rel = relationship("ExamSubject")
