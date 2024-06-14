@@ -16,6 +16,7 @@ class Candidate(BaseModel, Base):
         first_name = Column(String(50), nullable=False)
         middle_name = Column(String(50), nullable=False)
         last_name = Column(String(50), nullable=False)
+        password = Column(String(512))
     else:
         ses_id = ""
         year = ""

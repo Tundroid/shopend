@@ -3,8 +3,10 @@
 
 from flask import abort, request, jsonify
 from models.candidate import Candidate
+from models.candidate_session import CandidateSession
 from models import storage
 from api.v1.views import app_views, format_response
+import hashlib
 
 
 @app_views.route("/candidates", methods=['GET'], strict_slashes=False)
@@ -68,3 +70,41 @@ def update_candidate(candidate_id):
         candidate.save()
         return candidate.to_dict(), 200
     abort(404)
+
+@app_views.route("/candidates/login", methods=['POST'], strict_slashes=False)
+def login_candidate():
+    """method to login candidate"""
+    data = request.get_json(silent=True)
+    if data is None:
+        abort(400, "Not a JSON")
+    if 'gce_id' not in data:
+        abort(400, "Missing gce_id")
+    if 'candidate_pass' not in data:
+        abort(400, "Missing candidate_pass")
+
+    candidate = storage.get(Candidate, data['gce_id'])
+    if candidate:
+        candidate_pass = data['candidate_pass'].encode('utf-8')
+        sha512_hash = hashlib.sha512()
+        sha512_hash.update(candidate_pass)
+        hash_hex = sha512_hash.hexdigest()
+        if (candidate.password == hash_hex):
+            candidate_sess = CandidateSession(**{"candidate": candidate.candidate_id})
+            candidate_sess.save()
+            return jsonify(candidate_sess.to_dict()), 201
+        else:
+            return jsonify({"error": "password incorrect"}), 401
+    return jsonify({"error": "candidate not found"}), 401
+
+@app_views.route("/candidates/sessions/", methods=['GET'], strict_slashes=False)
+@app_views.route("/candidates/sessions/<ses_id>", methods=['GET'], strict_slashes=False)
+def get_candidate_sessions(ses_id=None):
+    if ses_id:
+        session = storage.get(CandidateSession, ses_id)
+        if session:
+            return candidate.to_dict()
+        abort(404)
+
+    """ get all candidates """
+    sessions = [obj.to_dict() for obj in storage.all(CandidateSession).values()]
+    return jsonify(sessions)

@@ -16,6 +16,7 @@ class Admin(BaseModel, Base):
         admin_id = Column(String(50), primary_key=True, default=lambda: str(uuid.uuid4()))
         name = Column(String(50), nullable=False)
         center = Column(String(5), ForeignKey('center.center_no'))
+        password = Column(String(512))
         __table_args__ = (
             UniqueConstraint('name', name='name_UNIQUE'),
         )
