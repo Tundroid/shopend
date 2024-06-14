@@ -5,7 +5,7 @@ from flask import abort, request, jsonify
 from models.candidate import Candidate
 from models.candidate_session import CandidateSession
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 import hashlib
 
 
@@ -22,7 +22,7 @@ def get_candidates(candidate_id=None):
     candidates = [obj.to_dict() for obj in storage.all(Candidate).values()]
     response = jsonify(candidates)
     # response.headers.add('Access-Control-Allow-Origin', '*')
-    # return format_response(candidates)
+    # return jsonify(candidates)
     return response
 
 
@@ -89,7 +89,7 @@ def login_candidate():
         sha512_hash.update(candidate_pass)
         hash_hex = sha512_hash.hexdigest()
         if (candidate.password == hash_hex):
-            candidate_sess = CandidateSession(**{"candidate": candidate.candidate_id})
+            candidate_sess = CandidateSession(**{"candidate": candidate.gce_id})
             candidate_sess.save()
             return jsonify(candidate_sess.to_dict()), 201
         else:

@@ -4,7 +4,7 @@
 from flask import abort, request, jsonify
 from models.admin import Admin
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 import hashlib
 
 

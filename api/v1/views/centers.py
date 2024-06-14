@@ -4,7 +4,7 @@
 from flask import abort, request
 from models.center import Center
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 
 
 @app_views.route("/centers", methods=['GET'], strict_slashes=False)
@@ -18,7 +18,7 @@ def get_centers(center_id=None):
 
     """get all centers"""
     centers = [obj.to_dict() for obj in storage.all(Center).values()]
-    return format_response(centers)
+    return jsonify(centers)
 
 
 @app_views.route("/centers/<center_id>", methods=['DELETE'],

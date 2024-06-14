@@ -4,7 +4,7 @@
 from flask import abort, request, jsonify
 from models.view_subject_registration import ViewSubjectRegistration
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 
 
 @app_views.route("/candidate_subjects", methods=['GET'], strict_slashes=False)
@@ -19,5 +19,5 @@ def get_candidate_subjects(reg_id=None):
         """get all registrations"""
         subjects = [obj.to_dict() for obj in storage.all(ViewSubjectRegistration).values()]
     response = jsonify(subjects)
-    # return format_response(registrations)
+    # return jsonify(registrations)
     return response

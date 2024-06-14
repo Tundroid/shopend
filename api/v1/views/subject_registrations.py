@@ -4,7 +4,7 @@
 from flask import abort, request, jsonify
 from models.subject_registration import SubjectRegistration
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 
 
 @app_views.route("/subject_registrations", methods=['GET'], strict_slashes=False)

@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ Subject API endpoints """
 
-from flask import abort, request
+from flask import abort, request, jsonify
 from models.subject import Subject
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 
 
 @app_views.route("/subjects", methods=['GET'], strict_slashes=False)
@@ -18,7 +18,7 @@ def get_subjects(subject_id=None):
 
     """get all subjects"""
     subjects = [obj.to_dict() for obj in storage.all(Subject).values()]
-    return format_response(subjects)
+    return jsonify(subjects)
 
 
 @app_views.route("/subjects/<subject_id>", methods=['DELETE'],

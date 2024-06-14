@@ -5,8 +5,26 @@ from flask import abort, request, jsonify
 from models.admin import Admin
 from models.admin_session import AdminSession
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 import hashlib
+
+# def require_auth(f):
+#     @wraps(f)
+#     def decorated(*args, **kwargs):
+#         auth_header = request.headers.get('Authorization')
+#         if not auth_header:
+#             return jsonify({'message': 'Missing Authorization Header'}), 401
+#         parts = auth_header.split(" ")
+#         if len(parts) != 2 or parts[0].lower() != 'bearer':
+#             return jsonify({'message': 'Invalid Authorization Header'}), 401
+#         admin_sess = storage.get(AdminSession, parts[1])
+#         if admin_sess:
+#             if (admin_sess.expired()):
+#                 return jsonify({'error': 'Session expired'}), 401
+#         else:
+#             return jsonify({'error': 'Unknown session'}), 401
+#         return f(*args, **kwargs)
+#     return decorated
 
 
 @app_views.route("/admins", methods=['GET'], strict_slashes=False)

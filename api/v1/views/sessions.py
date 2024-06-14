@@ -4,7 +4,7 @@
 from flask import abort, request
 from models.session import Session
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 
 
 @app_views.route("/sessions", methods=['GET'], strict_slashes=False)
@@ -18,7 +18,7 @@ def get_sessions(session_id=None):
 
     """get all sessions"""
     sessions = [obj.to_dict() for obj in storage.all(Session).values()]
-    return format_response(sessions)
+    return jsonify(sessions)
 
 
 @app_views.route("/sessions/<session_id>", methods=['DELETE'],

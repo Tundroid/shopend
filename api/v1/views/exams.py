@@ -4,7 +4,7 @@
 from flask import abort, request
 from models.exam import Exam
 from models import storage
-from api.v1.views import app_views, format_response
+from api.v1.views import app_views
 
 
 @app_views.route("/exams", methods=['GET'], strict_slashes=False)
@@ -18,7 +18,7 @@ def get_exams(exam_id=None):
 
     """get all exams"""
     exams = [obj.to_dict() for obj in storage.all(Exam).values()]
-    return format_response(exams)
+    return jsonify(exams)
 
 
 @app_views.route("/exams/<exam_id>", methods=['DELETE'],
