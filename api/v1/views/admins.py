@@ -3,7 +3,7 @@
 
 from flask import abort, request, jsonify
 from models.admin import Admin
-from models.admin_session import AdminSession
+from models.depot_detail import AdminSession
 from models import storage
 from api.v1.views import app_views
 import hashlib

@@ -16,7 +16,7 @@ def check_auth_header(cls=None):
     if len(parts) != 2 or parts[0].lower() != 'bearer':
         return jsonify({'message': 'Invalid Authorization Header'}), 401
     
-    from models.admin_session import AdminSession
+    from models.depot_detail import AdminSession
     from models.candidate_session import CandidateSession
 
     admin_sess = storage.get(AdminSession, parts[1])
