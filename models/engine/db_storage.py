@@ -100,7 +100,7 @@ class DBStorage:
 
         all_cls = models.storage.all(cls)
         for value in all_cls.values():
-            obj_id = "-".join([getattr(value, key) for key in inspect(cls).primary_key])
+            obj_id = "-".join([getattr(value, key.name) for key in inspect(cls).primary_key])
             print("obj_id: ", obj_id)
             if (str(obj_id) == str(id)):
                 return value
