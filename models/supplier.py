@@ -1,22 +1,26 @@
 #!/usr/bin/python
-""" SupplierType class """
+""" Supplier class """
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Text, SmallInteger, TIMESTAMP
+from sqlalchemy import Column, String, Text, SmallInteger, ForeignKey, TIMESTAMP
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 
-class SupplierType(BaseModel, Base):
-    """ Representation of Supplier Type """
+class Supplier(BaseModel, Base):
+    """ Representation of Supplier """
     if models.storage_t == "db":
-        __tablename__ = 'sup_type'
+        __tablename__ = 'supplier'
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
-        st_name = Column(String(50), nullable=False, unique=True)
-        st_desc = Column(Text, nullable=False)
+        sup_name = Column(String(50), nullable=False, unique=True)
+        sup_type = Column(SmallInteger, ForeignKey('sup_type.id'), nullable=False)
+        sup_desc = Column(Text)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 
+        sup_type_rel = relationship('SupplierType', backref='suppliers')
+
     def __init__(self, *args, **kwargs):
-        """ SupplierType initialization """
+        """ Supplier initialization """
         super().__init__(*args, **kwargs)
