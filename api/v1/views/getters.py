@@ -25,20 +25,20 @@ def get_model(model=None, model_id=None):
         JSON response with model data or an error message.
     """
     if (not model):
-        return "Model is required", 400
+        abort(400, description="Model is required")
     
     try:
         if model_id:
             db_model = storage.get(classes[model], model_id)
             if db_model:
                 return db_model.to_dict()
-            return f"Model `{model}` identified by `{model_id}` not found", 404
+            abort(404, description=f"Model `{model}` identified by `{model_id}` not found")
 
         """get all @model details"""
         db_models = [obj.to_dict() for obj in storage.all(classes[model]).values()]
         return jsonify(db_models)
     except (KeyError):
-        return  f"Model `{model}` not found", 404
+        return  abort(404, description=f"Model `{model}` not found")
 
 @app_views.errorhandler(400)
 def handle_bad_request(error):
