@@ -6,6 +6,7 @@ Contains the class DBStorage
 import models
 from models.base_model import BaseModel, Base
 from models.depot_detail import DepotDetail
+from models.operation import Operation
 from models.candidate import Candidate
 from models.session import Session
 from models.subject import Subject
