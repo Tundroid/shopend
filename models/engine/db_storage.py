@@ -12,7 +12,7 @@ from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"DepotDetail": DepotDetail, "Operation": Operation}
+classes = {"DepotDetail": DepotDetail, "Operation": Operation, "Family": Family}
 
 
 class DBStorage:
