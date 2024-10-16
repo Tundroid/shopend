@@ -15,19 +15,28 @@ classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family
 @app_views.route("/get/<model>", methods=['GET'], strict_slashes=False)
 @app_views.route("/get/<model>/<model_id>", methods=['GET'], strict_slashes=False)
 def get_model(model=None, model_id=None):
+    """Retrieve model or model instance details.
+
+    Args:
+        model (str): The model name.
+        model_id (str): The ID of the model instance (optional).
+
+    Returns:
+        JSON response with model data or an error message.
+    """
     if (not model):
-        abort(400) # bad request
+        return jsonify({"type": "error", "message": "Model is required"}), 400
     
     try:
         if model_id:
-            model = storage.get(classes.get(model), model_id)
+            model = storage.get(classes[model], model_id)
             if model:
                 return model.to_dict()
-            abort(404)
+            return jsonify({"type": "error", "message": f"Model {model} identified by {model_id} not found"}), 404
 
         """get all @model details"""
-        models = [obj.to_dict() for obj in storage.all(classes.get(model)).values()]
+        models = [obj.to_dict() for obj in storage.all(classes[model]).values()]
         return jsonify(models)
     except (KeyError):
-        abort(404) # model not found
+        return jsonify({"type": "error", "message": f"Model {model} not found"}), 404
 
