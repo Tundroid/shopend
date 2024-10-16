@@ -108,7 +108,7 @@ class DBStorage:
             obj_id = eval(f"value.{inspect(cls).primary_key[0].name}")
             print("obj_id: ", obj_id, "type: ", type(obj_id))
             print("check equality: ", obj_id == id)
-            if (obj_id == id):
+            if (str(obj_id) == str(id)):
                 return value
 
         return None
