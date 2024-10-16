@@ -99,13 +99,10 @@ class DBStorage:
         Returns the object based on the class name and its ID, or
         None if not found
         """
-        print("Why you")
         if cls not in classes.values():
             return None
 
-        print("sent id: ", id)
         all_cls = models.storage.all(cls)
-        print(all_cls)
         for value in all_cls.values():
             obj_id = eval(f"value.{inspect(cls).primary_key[0].name}")
             if (obj_id == id):
