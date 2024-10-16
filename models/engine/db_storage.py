@@ -62,9 +62,7 @@ class DBStorage:
                 objs = self.__session.query(my_class).filter(eval(cond)).all()
             print("In the house: ", len(objs))
             for obj in objs:
-                obj_id = eval(f"obj.{inspect(my_class).primary_key[0].name}")
-                # obj_id = "-".join([str(getattr(objs, key.name)) for key in inspect(cls).primary_key])
-                print([str(getattr(obj, key.name)) for key in inspect(cls).primary_key])
+                obj_id = "-".join([str(getattr(obj, key.name)) for key in inspect(cls).primary_key])
                 key = f"{obj.__class__.__name__}.{obj_id}"
                 new_dict[key] = obj
         return (new_dict)
