@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Exam API endpoints """
 
-from flask import abort, request
+from flask import abort, request, jsonify
 from models.depot_detail import DepotDetail
 from models import storage
 from api.v1.views import app_views
