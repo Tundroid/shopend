@@ -3,9 +3,8 @@
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, SmallInteger, Integer, ForeignKey
+from sqlalchemy import Column, SmallInteger, Integer, ForeignKey, PrimaryKeyConstraint
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import PrimaryKeyConstraint
 
 
 class Depot(BaseModel, Base):
