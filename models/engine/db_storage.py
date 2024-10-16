@@ -10,7 +10,7 @@ from models.operation import Operation
 from models.family import Family
 from models.item_cat import ItemCategory
 from models.sector import Sector
-from models.deposit_detail import DepositDetail
+# from models.deposit_detail import DepositDetail
 from models.pay_mode import PayMode
 from os import getenv
 from sqlalchemy import create_engine, inspect
