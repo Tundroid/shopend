@@ -13,7 +13,7 @@ class Depot(BaseModel, Base):
         __tablename__ = 'depot'
 
         depot_id = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
-        item_id = Column(Integer(unsigned=True), ForeignKey('item.id'), nullable=False)
+        item_id = Column(Integer, ForeignKey('item.id'), nullable=False)
         stock = Column(Integer, nullable=False, default=0)
 
         __table_args__ = (
