@@ -104,10 +104,7 @@ class DBStorage:
 
         all_cls = models.storage.all(cls)
         for value in all_cls.values():
-            print("returned id: ", value.id, "type: ", type(value.id))
-            obj_id = eval(f"value.{inspect(cls).primary_key[0].name}")
-            print("obj_id: ", obj_id, "type: ", type(obj_id))
-            print("check equality: ", obj_id == id)
+            obj_id = getattr(value, inspect(cls).primary_key[0].name)
             if (str(obj_id) == str(id)):
                 return value
 
