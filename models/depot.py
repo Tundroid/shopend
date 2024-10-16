@@ -12,12 +12,12 @@ class Depot(BaseModel, Base):
     if models.storage_t == "db":
         __tablename__ = 'depot'
 
-        depot_id = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
+        depot = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
         item_id = Column(Integer, ForeignKey('item.id'), nullable=False)
         stock = Column(Integer, nullable=False, default=0)
 
         __table_args__ = (
-            PrimaryKeyConstraint('depot_id', 'item_id'),
+            PrimaryKeyConstraint('depot', 'item_id'),
         )
 
         depot_rel = relationship('DepotDetail', backref='depot_stock')
