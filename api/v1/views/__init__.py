@@ -33,12 +33,5 @@ def check_auth_header(cls=None):
 
 
 from api.v1.views.index import *
-from api.v1.views.sessions import *
-from api.v1.views.subjects import *
 from api.v1.views.operations import *
-from api.v1.views.candidates import *
-from api.v1.views.centers import *
-from api.v1.views.registrations import *
-from api.v1.views.candidate_subjects import *
-from api.v1.views.subject_registrations import *
 from api.v1.views.depot_details import *

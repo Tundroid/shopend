@@ -7,31 +7,11 @@ import models
 from models.base_model import BaseModel, Base
 from models.depot_detail import DepotDetail
 from models.operation import Operation
-from models.candidate import Candidate
-from models.session import Session
-from models.subject import Subject
-from models.center import Center
-from models.exam_subject import ExamSubject
-from models.exam_session import ExamSession
-from models.exam_center import ExamCenter
-from models.exam_registration import ExamRegistration
-from models.subject_registration import SubjectRegistration
-from models.view_exam_registration import ViewExamRegistration
-from models.view_subject_registration import ViewSubjectRegistration
-from models.view_subject import ViewSubject
-from models.candidate_session import CandidateSession
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"DepotDetail": DepotDetail, "Operation": Operation, "Center": Center,
-           "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
-           "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
-           "SubjectRegistration": SubjectRegistration,
-           "ViewExamRegistration": ViewExamRegistration,
-           "ViewSubjectRegistration": ViewSubjectRegistration,
-           "ViewSubject": ViewSubject,
-           "CandidateSession": CandidateSession}
+classes = {"DepotDetail": DepotDetail, "Operation": Operation}
 
 
 class DBStorage:

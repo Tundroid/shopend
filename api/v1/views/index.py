@@ -5,21 +5,10 @@ from flask import jsonify
 
 from api.v1.views import app_views
 from models import storage
-from models.exam import Exam
-from models.candidate import Candidate
-from models.session import Session
-from models.subject import Subject
-from models.center import Center
-from models.exam_subject import ExamSubject
-from models.exam_session import ExamSession
-from models.exam_center import ExamCenter
-from models.exam_registration import ExamRegistration
-from models.subject_registration import SubjectRegistration
+from models.depot_detail import DepotDetail
+from models.operation import Operation
 
-classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Center,
-           "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
-           "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
-           "SubjectRegistration": SubjectRegistration}
+classes = {"Operation": Operation, "DepotDetail": DepotDetail}
 
 
 @app_views.route("/status", strict_slashes=False)
