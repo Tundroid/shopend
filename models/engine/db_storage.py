@@ -11,6 +11,8 @@ from models.family import Family
 from models.item_cat import ItemCategory
 from models.sector import Sector
 # from models.deposit_detail import DepositDetail
+# from models.supplier_contact import SupplierContact
+from models.supplier_type import SupplierType
 from models.pay_mode import PayMode
 from os import getenv
 from sqlalchemy import create_engine, inspect
@@ -18,7 +20,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family,
            "item_cat": ItemCategory, "sector": Sector, #"deposit_detail": DepositDetail,
-           "pay_mode": PayMode}
+           "pay_mode": PayMode, "supplier_type": SupplierType}
 
 
 class DBStorage:
