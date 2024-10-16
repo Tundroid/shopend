@@ -28,6 +28,7 @@ def get_model(model=None, model_id=None):
     
     try:
         if model_id:
+            print(model, model_id)
             db_model = storage.get(model, model_id)
             if db_model:
                 return jsonify(db_model.to_dict())
