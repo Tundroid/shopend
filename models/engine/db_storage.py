@@ -100,6 +100,9 @@ class DBStorage:
 
         all_cls = models.storage.all(cls)
         for value in all_cls.values():
+            i = 0
+            # for i = 0 to len(primary_key)
+            print("type: ", type(inspect(cls).primary_key))
             obj_id = getattr(value, inspect(cls).primary_key[0].name)
             if (str(obj_id) == str(id)):
                 return value
