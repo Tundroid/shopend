@@ -106,6 +106,7 @@ class DBStorage:
         for value in all_cls.values():
             print("returned id: ", value.id)
             obj_id = eval(f"value.{inspect(cls).primary_key[0].name}")
+            print("obj_id: ", obj_id)
             if (obj_id == id):
                 return value
 
