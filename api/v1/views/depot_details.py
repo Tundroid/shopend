@@ -10,6 +10,7 @@ from api.v1.views import app_views
 @app_views.route("/depot_detail", methods=['GET'], strict_slashes=False)
 @app_views.route("/depot_detail/<depot_id>", methods=['GET'], strict_slashes=False)
 def get_depot_detail(depot_id=None):
+    print("Find me here")
     if depot_id:
         depot_detail = storage.get(DepotDetail, depot_id)
         if depot_detail:
