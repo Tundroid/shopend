@@ -7,6 +7,7 @@ import models
 from models.base_model import BaseModel, Base
 from models.depot_detail import DepotDetail
 from models.operation import Operation
+from models.family import Family
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
