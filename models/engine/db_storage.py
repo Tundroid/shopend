@@ -60,6 +60,7 @@ class DBStorage:
                 objs = self.__session.query(my_class).all()
             else:
                 objs = self.__session.query(my_class).filter(eval(cond)).all()
+            print("In the house: ", len(objs))
             for obj in objs:
                 obj_id = eval(f"obj.{inspect(my_class).primary_key[0].name}")
                 key = f"{obj.__class__.__name__}.{obj_id}"
