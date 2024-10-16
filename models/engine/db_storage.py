@@ -99,12 +99,14 @@ class DBStorage:
             return None
 
         all_cls = models.storage.all(cls)
+        i = 0
         for value in all_cls.values():
             obj_id = "-".join([str(getattr(value, key.name)) for key in inspect(cls).primary_key])
             print("obj_id: ", obj_id)
             if (str(obj_id) == str(id)):
                 return value
-
+            i = i + 1
+        print("i: ", i)
         return None
 
     def count(self, cls=None):
