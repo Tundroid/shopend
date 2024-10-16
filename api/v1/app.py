@@ -28,6 +28,6 @@ def not_found(e):
 
 
 if __name__ == "__main__":
-    app.run(host=getenv("HBNB_API_HOST", '0.0.0.0'),
-            port=getenv("HBNB_API_PORT", '5000'),
+    app.run(host="0.0.0.0",
+            port="5000",
             threaded=True)

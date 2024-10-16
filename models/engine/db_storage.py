@@ -43,17 +43,17 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        CGCEB_MYSQL_USER = getenv('CGCEB_MYSQL_USER')
-        CGCEB_MYSQL_PWD = getenv('CGCEB_MYSQL_PWD')
-        CGCEB_MYSQL_HOST = getenv('CGCEB_MYSQL_HOST')
-        CGCEB_MYSQL_DB = getenv('CGCEB_MYSQL_DB')
-        CGCEB_ENV = getenv('CGCEB_ENV')
+        APP_MYSQL_USER = "test"
+        APP_MYSQL_PWD = "test"
+        APP_MYSQL_HOST = "172.19.128.1"
+        APP_MYSQL_DB = "mole_commerce"
+        APP_ENV = "dev"
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(CGCEB_MYSQL_USER,
-                                             CGCEB_MYSQL_PWD,
-                                             CGCEB_MYSQL_HOST,
-                                             CGCEB_MYSQL_DB))
-        if CGCEB_ENV == "test":
+                                      format(APP_MYSQL_USER,
+                                             APP_MYSQL_PWD,
+                                             APP_MYSQL_HOST,
+                                             APP_MYSQL_DB))
+        if APP_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None, cond=None):
