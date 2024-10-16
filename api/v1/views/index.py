@@ -10,7 +10,6 @@ from models.candidate import Candidate
 from models.session import Session
 from models.subject import Subject
 from models.center import Center
-from models.admin import Admin
 from models.exam_subject import ExamSubject
 from models.exam_session import ExamSession
 from models.exam_center import ExamCenter
@@ -20,7 +19,7 @@ from models.subject_registration import SubjectRegistration
 classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Center,
            "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
            "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
-           "SubjectRegistration": SubjectRegistration, "Admin": Admin}
+           "SubjectRegistration": SubjectRegistration}
 
 
 @app_views.route("/status", strict_slashes=False)

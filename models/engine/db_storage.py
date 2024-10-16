@@ -5,7 +5,7 @@ Contains the class DBStorage
 
 import models
 from models.base_model import BaseModel, Base
-from models.exam import Exam
+from models.depot_detail import DepotDetail
 from models.candidate import Candidate
 from models.session import Session
 from models.subject import Subject
@@ -25,14 +25,13 @@ from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"Session": Session, "Subject": Subject, "Exam": Exam, "Center": Center,
+classes = {"DepotDetail": DepotDetail, "Subject": Subject, "Center": Center,
            "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
            "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
            "SubjectRegistration": SubjectRegistration, "Admin": Admin,
            "ViewExamRegistration": ViewExamRegistration,
            "ViewSubjectRegistration": ViewSubjectRegistration,
            "ViewSubject": ViewSubject,
-           "AdminSession": AdminSession,
            "CandidateSession": CandidateSession}
 
 

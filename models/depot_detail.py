@@ -15,7 +15,7 @@ class DepotDetail(BaseModel, Base):
         __tablename__ = 'depot_detail'
 
         id = Column(Integer, primary_key=True)
-        depot_name = Column(String(50), ForeignKey('admin.admin_id'), nullable=False)
+        depot_name = Column(String(50))
         depot_desc = Column(Text)
         depot_type = Column(Text(30))
         # is_metered = Column(, default=datetime.datetime.utcnow())
