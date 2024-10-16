@@ -60,9 +60,8 @@ class DBStorage:
                 objs = self.__session.query(my_class).all()
             else:
                 objs = self.__session.query(my_class).filter(eval(cond)).all()
-            print("In the house: ", len(objs))
             for obj in objs:
-                obj_id = "-".join([str(getattr(obj, key.name)) for key in inspect(cls).primary_key])
+                obj_id = "-".join([str(getattr(obj, k.name)) for k in inspect(cls).primary_key])
                 key = f"{obj.__class__.__name__}.{obj_id}"
                 new_dict[key] = obj
         return (new_dict)
@@ -100,15 +99,12 @@ class DBStorage:
             return None
 
         all_cls = models.storage.all(cls)
-        print("len: ", len(all_cls))
-        i = 0
+        print(all_cls)
+
         for value in all_cls.values():
             obj_id = "-".join([str(getattr(value, key.name)) for key in inspect(cls).primary_key])
-            print("obj_id: ", obj_id)
             if (str(obj_id) == str(id)):
                 return value
-            i = i + 1
-        print("i: ", i)
         return None
 
     def count(self, cls=None):
