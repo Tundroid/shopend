@@ -17,7 +17,7 @@ from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family,
-           "item_cat": ItemCategory, "sector": Sector, "deposit_detail": DepositDetail,
+           "item_cat": ItemCategory, "sector": Sector, #"deposit_detail": DepositDetail,
            "pay_mode": PayMode}
 
 
