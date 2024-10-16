@@ -3,7 +3,7 @@
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, CHAR, Text, TINYINT
+from sqlalchemy import Column, String, CHAR, Text, SmallInteger
 
 
 class Operation(BaseModel, Base):
@@ -11,7 +11,7 @@ class Operation(BaseModel, Base):
     if models.storage_t == "db":
         __tablename__ = 'operation'
 
-        id = Column(TINYINT(unsigned=True), primary_key=True, autoincrement=True)
+        id = Column(SmallInteger, primary_key=True, autoincrement=True)
         op_name = Column(String(50), nullable=False, unique=True)
         op_sign = Column(CHAR(1), nullable=False, default='+')
         op_desc = Column(Text, nullable=False)
