@@ -13,7 +13,7 @@ class Barcode(BaseModel, Base):
         __tablename__ = 'barcode'
 
         barcode = Column(String(50), primary_key=True)
-        item = Column(Integer(unsigned=True), ForeignKey('item.id'), nullable=False)
+        item = Column(Integer, ForeignKey('item.id'), nullable=False)
 
         item_rel = relationship('Item', backref='barcodes')
 
