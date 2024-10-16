@@ -29,14 +29,14 @@ def get_model(model=None, model_id=None):
     
     try:
         if model_id:
-            model = storage.get(classes[model], model_id)
-            if model:
-                return model.to_dict()
-            return jsonify({"type": "error", "message": f"Model {model} identified by {model_id} not found"}), 404
+            db_model = storage.get(classes[model], model_id)
+            if db_model:
+                return db_model.to_dict()
+            return jsonify({"type": "error", "message": f"Model `{model}` identified by `{model_id}` not found"}), 404
 
         """get all @model details"""
-        models = [obj.to_dict() for obj in storage.all(classes[model]).values()]
-        return jsonify(models)
+        db_models = [obj.to_dict() for obj in storage.all(classes[model]).values()]
+        return jsonify(db_models)
     except (KeyError):
-        return jsonify({"type": "error", "message": f"Model {model} not found"}), 404
+        return jsonify({"type": "error", "message": f"Model `{model}` not found"}), 404
 
