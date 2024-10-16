@@ -1,22 +1,24 @@
 #!/usr/bin/python
-""" Barcode class """
+""" ClientAccount class """
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Integer, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, SmallInteger, Enum, Boolean, Integer, TIMESTAMP
+from sqlalchemy.sql import func
 
 
-class Barcode(BaseModel, Base):
-    """ Representation of Barcode """
+class ClientAccount(BaseModel, Base):
+    """ Representation of Client Account """
     if models.storage_t == "db":
-        __tablename__ = 'barcode'
+        __tablename__ = 'client_account'
 
-        barcode = Column(String(50), primary_key=True)
-        item = Column(Integer, ForeignKey('item.id'), nullable=False)
-
-        item_rel = relationship('Item', backref='barcodes')
+        id = Column(SmallInteger, primary_key=True, autoincrement=True)
+        acc_name = Column(String(50), nullable=False, unique=True)
+        acc_type = Column(Enum('Consumer', 'Worker', 'Both'), nullable=False, default='Consumer')
+        is_active = Column(Boolean, nullable=False, default=True)
+        credit_limit = Column(Integer, nullable=False, default=25000)
+        datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 
     def __init__(self, *args, **kwargs):
-        """ Barcode initialization """
+        """ ClientAccount initialization """
         super().__init__(*args, **kwargs)
