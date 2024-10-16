@@ -101,6 +101,7 @@ class DBStorage:
         Returns the object based on the class name and its ID, or
         None if not found
         """
+        print("Why you")
         if cls not in classes.values():
             return None
 
