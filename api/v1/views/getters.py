@@ -31,7 +31,7 @@ def get_model(model=None, model_id=None):
         if model_id:
             db_model = storage.get(classes[model], model_id)
             if db_model:
-                return db_model.to_dict()
+                return jsonify(db_model.to_dict())
             abort(404, description=f"Model `{model}` identified by `{model_id}`")
 
         """get all @model details"""
