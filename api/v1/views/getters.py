@@ -39,11 +39,3 @@ def get_model(model=None, model_id=None):
         return jsonify(db_models)
     except (KeyError):
         return  abort(404, description=f"Model `{model}`")
-
-@app_views.errorhandler(400)
-def handle_bad_request(error):
-    return jsonify({"type": "error", "message": str(error)}), 400
-
-@app_views.errorhandler(404)
-def handle_not_found(error):
-    return jsonify({"type": "error", "message": str(error)}), 404

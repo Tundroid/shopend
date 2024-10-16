@@ -6,6 +6,13 @@ from flask import Blueprint
 
 app_views = Blueprint("app_views", __name__, url_prefix="/api/v1")
 
+@app_views.errorhandler(400)
+def handle_bad_request(error):
+    return jsonify({"type": "error", "message": str(error)}), 400
+
+@app_views.errorhandler(404)
+def handle_not_found(error):
+    return jsonify({"type": "error", "message": str(error)}), 404
 
 def check_auth_header(cls=None):
     auth_header = request.headers.get('Authorization')
