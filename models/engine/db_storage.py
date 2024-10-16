@@ -16,6 +16,7 @@ from models.supplier_type import SupplierType
 from models.supplier import Supplier
 from models.pay_mode import PayMode
 from models.depot_map import DepotMap
+from models.depot import Depot
 from models.item import Item
 from os import getenv
 from sqlalchemy import create_engine, inspect
@@ -24,7 +25,8 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family,
            "item_cat": ItemCategory, "sector": Sector, #"deposit_detail": DepositDetail,
            "pay_mode": PayMode, "supplier_type": SupplierType, "supplier": Supplier,
-           "supplier_contact": SupplierContact, "item": Item, "depot_map": DepotMap}
+           "supplier_contact": SupplierContact, "item": Item, "depot_map": DepotMap,
+           "depot": Depot}
 
 
 class DBStorage:

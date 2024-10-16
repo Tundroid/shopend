@@ -1,29 +1,29 @@
 #!/usr/bin/python
-""" DepotMap class """
+""" Depot class """
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, SmallInteger, ForeignKey, PrimaryKeyConstraint
+from sqlalchemy import Column, SmallInteger, Integer, ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import PrimaryKeyConstraint
 
 
-class DepotMap(BaseModel, Base):
-    """ Representation of Depot Map """
+class Depot(BaseModel, Base):
+    """ Representation of Depot """
     if models.storage_t == "db":
-        __tablename__ = 'depot_map'
+        __tablename__ = 'depot'
 
-        source = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
-        destination = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
-        operation = Column(SmallInteger, ForeignKey('operation.id'), nullable=False)
+        depot_id = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
+        item_id = Column(Integer(unsigned=True), ForeignKey('item.id'), nullable=False)
+        stock = Column(Integer, nullable=False, default=0)
 
         __table_args__ = (
-            PrimaryKeyConstraint('source', 'destination', 'operation'),
+            PrimaryKeyConstraint('depot_id', 'item_id'),
         )
 
-        depot_source_rel = relationship('DepotDetail', foreign_keys=[source], backref='depot_map_sources')
-        depot_destination_rel = relationship('DepotDetail', foreign_keys=[destination], backref='depot_map_destinations')
-        operation_rel = relationship('Operation', backref='depot_maps')
+        depot_rel = relationship('DepotDetail', backref='depot_stock')
+        item_rel = relationship('Item', backref='depot_stock')
 
     def __init__(self, *args, **kwargs):
-        """ DepotMap initialization """
+        """ Depot initialization """
         super().__init__(*args, **kwargs)
