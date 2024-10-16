@@ -11,7 +11,6 @@ from api.v1.views import app_views
 @app_views.route("/operation/<operation_id>", methods=['GET'], strict_slashes=False)
 def get_operation(operation_id=None):
     if operation_id:
-        print("hmmm", operation_id)
         operation = storage.get(Operation, operation_id)
         if operation:
             return operation.to_dict()

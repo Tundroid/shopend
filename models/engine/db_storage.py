@@ -24,7 +24,7 @@ from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"DepotDetail": DepotDetail, "Subject": Subject, "Center": Center,
+classes = {"DepotDetail": DepotDetail, "Operation": Operation, "Center": Center,
            "Candidate": Candidate, "ExamCenter": ExamCenter, "ExamSession": ExamSession,
            "ExamSubject": ExamSubject, "ExamRegistration": ExamRegistration,
            "SubjectRegistration": SubjectRegistration,
@@ -100,15 +100,12 @@ class DBStorage:
         Returns the object based on the class name and its ID, or
         None if not found
         """
-        print("before")
         if cls not in classes.values():
             return None
 
         all_cls = models.storage.all(cls)
-        print("here")
         for value in all_cls.values():
             obj_id = getattr(value, inspect(cls).primary_key[0].name)
-            print(id, obj_id)
             if (str(obj_id) == str(id)):
                 return value
 
