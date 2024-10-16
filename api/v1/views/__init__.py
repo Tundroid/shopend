@@ -41,4 +41,3 @@ from api.v1.views.centers import *
 from api.v1.views.registrations import *
 from api.v1.views.candidate_subjects import *
 from api.v1.views.subject_registrations import *
-from api.v1.views.admins import *
