@@ -99,6 +99,7 @@ class DBStorage:
             return None
 
         all_cls = models.storage.all(cls)
+        print("len: ", len(all_cls))
         i = 0
         for value in all_cls.values():
             obj_id = "-".join([str(getattr(value, key.name)) for key in inspect(cls).primary_key])
