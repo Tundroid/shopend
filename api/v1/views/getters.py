@@ -5,10 +5,9 @@ from flask import abort, request, jsonify
 from models.family import Family
 from models.depot_detail import DepotDetail
 from models.operation import Operation
+from models.engine.db_storage import classes
 from models import storage
 from api.v1.views import app_views
-
-classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family}
 
 
 @app_views.route("/get", methods=['GET'], strict_slashes=False)
@@ -29,7 +28,7 @@ def get_model(model=None, model_id=None):
     
     try:
         if model_id:
-            db_model = storage.get(classes[model], model_id)
+            db_model = storage.get(model, model_id)
             if db_model:
                 return jsonify(db_model.to_dict())
             abort(404, description=f"Model `{model}` identified by `{model_id}`")
