@@ -5,10 +5,7 @@ from flask import jsonify
 
 from api.v1.views import app_views
 from models import storage
-from models.depot_detail import DepotDetail
-from models.operation import Operation
-
-classes = {"Operation": Operation, "DepotDetail": DepotDetail}
+from models.engine.db_storage import classes
 
 
 @app_views.route("/status", strict_slashes=False)
