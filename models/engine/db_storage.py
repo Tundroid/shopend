@@ -9,12 +9,13 @@ from models.depot_detail import DepotDetail
 from models.operation import Operation
 from models.family import Family
 from models.item_cat import ItemCategory
+from models.sector import Sector
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family,
-           "item_cat": ItemCategory}
+           "item_cat": ItemCategory, "sector": Sector}
 
 
 class DBStorage:

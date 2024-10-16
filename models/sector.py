@@ -1,22 +1,22 @@
 #!/usr/bin/python
-""" ItemCategory class """
+""" Sector class """
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Text, TIMESTAMP, SmallInteger
+from sqlalchemy import Column, String, Text, SmallInteger, TIMESTAMP
 from sqlalchemy.sql import func
 
 
-class ItemCategory(BaseModel, Base):
-    """ Representation of Item Category """
+class Sector(BaseModel, Base):
+    """ Representation of Sector """
     if models.storage_t == "db":
-        __tablename__ = 'item_cat'
+        __tablename__ = 'sector'
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
-        cat_name = Column(String(50), nullable=False, unique=True)
-        cat_desc = Column(Text)
+        sec_name = Column(String(50), nullable=False, unique=True)
+        sec_desc = Column(Text)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 
     def __init__(self, *args, **kwargs):
-        """ ItemCategory initialization """
+        """ Sector initialization """
         super().__init__(*args, **kwargs)
