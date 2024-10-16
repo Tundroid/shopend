@@ -32,13 +32,13 @@ def get_model(model=None, model_id=None):
             db_model = storage.get(classes[model], model_id)
             if db_model:
                 return db_model.to_dict()
-            abort(404, description=f"Model `{model}` identified by `{model_id}` not found")
+            abort(404, description=f"Model `{model}` identified by `{model_id}`")
 
         """get all @model details"""
         db_models = [obj.to_dict() for obj in storage.all(classes[model]).values()]
         return jsonify(db_models)
     except (KeyError):
-        return  abort(404, description=f"Model `{model}` not found")
+        return  abort(404, description=f"Model `{model}`")
 
 @app_views.errorhandler(400)
 def handle_bad_request(error):
