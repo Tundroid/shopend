@@ -71,6 +71,7 @@ class FileStorage:
         Returns the object based on the class name and its ID, or
         None if not found
         """
+        print("testing if na you di work")
         if cls not in classes.values():
             return None
 
