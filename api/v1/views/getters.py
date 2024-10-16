@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """ Model getter API endpoints """
 
-from flask import abort, request, jsonify
-from models.family import Family
-from models.depot_detail import DepotDetail
-from models.operation import Operation
+from flask import abort, jsonify
 from models.engine.db_storage import classes
 from models import storage
 from api.v1.views import app_views
