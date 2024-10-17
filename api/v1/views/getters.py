@@ -4,6 +4,7 @@
 from flask import abort, jsonify
 from models.engine.db_storage import classes
 from models import storage
+from models.base_model import Database
 from api.v1.views import app_views
 
 

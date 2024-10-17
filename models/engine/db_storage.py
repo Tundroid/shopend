@@ -58,7 +58,7 @@ class DBStorage:
         if APP_ENV == "test":
             pass
 
-    def all(self, cls=None, cond=None, db=Database.COMMERCE):
+    def all(self, db=Database.COMMERCE, cls=None, cond=None):
         """query on the current database session"""
         new_dict = {}
         class_dict = classes.copy()
@@ -84,7 +84,7 @@ class DBStorage:
         """commit all changes of the current database session"""
         self.__sessions[db.value].commit()
 
-    def delete(self, obj=None, db=Database.COMMERCE):
+    def delete(self, obj, db=Database.COMMERCE):
         """delete from the current database session obj if not None"""
         if obj is not None:
             self.__sessions[db.value].delete(obj)
