@@ -66,7 +66,7 @@ class DBStorage:
             class_dict = {cls.__class__.__name__: cls}
         for my_class in class_dict.values():
             if not cond:
-                objs = self.__sessions[db.value].query(my_class).all()
+                objs = self.__sessions[0].query(my_class).all()
             else:
                 print(cond, type(cond))
                 objs = self.__sessions[db.value].query(my_class).filter(eval(cond)).all()
