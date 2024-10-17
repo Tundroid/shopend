@@ -14,6 +14,7 @@ from models.sector import Sector
 from models.supplier_contact import SupplierContact
 from models.supplier_type import SupplierType
 from models.supplier import Supplier
+from models.supply_detail import SupplyDetail
 from models.pay_mode import PayMode
 from models.depot_map import DepotMap
 from models.depot import Depot
@@ -32,7 +33,7 @@ classes_commerce = {"depot_detail": DepotDetail, "operation": Operation, "family
            "pay_mode": PayMode, "supplier_type": SupplierType, "supplier": Supplier,
            "supplier_contact": SupplierContact, "item": Item, "depot_map": DepotMap,
            "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
-           "user_account": UserAccount}
+           "user_account": UserAccount, "supply_detail": SupplyDetail}
 
 classes_account = {"account_type": AccountType, "account": Account }
 
