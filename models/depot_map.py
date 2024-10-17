@@ -11,6 +11,7 @@ class DepotMap(BaseModel, Base):
     """ Representation of Depot Map """
     if models.storage_t == "db":
         __tablename__ = 'depot_map'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         source = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
         destination = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
