@@ -13,9 +13,9 @@ class Supply(BaseModel, Base):
         __tablename__ = 'supply'
         __table_args__ = {'schema': 'mole_commerce'}
 
-        item = Column(Integer(unsigned=True), ForeignKey('mole_commerce.item.id'))
-        quantity = Column(Integer(unsigned=True), nullable=False)
-        unit_cost = Column(Integer(unsigned=True), nullable=False)
+        item = Column(Integer, ForeignKey('mole_commerce.item.id'))
+        quantity = Column(Integer, nullable=False)
+        unit_cost = Column(Integer, nullable=False)
         expiry = Column(Date, nullable=False)
         batch = Column(String(50), ForeignKey('mole_commerce.supply_detail.batch'))
 
