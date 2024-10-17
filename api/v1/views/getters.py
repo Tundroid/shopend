@@ -2,9 +2,8 @@
 """ Model getter API endpoints """
 
 from flask import abort, jsonify
-from models.engine.db_storage import classes
+from models.engine.db_storage import classes_commerce, classes_account
 from models import storage
-from models.base_model import Database
 from api.v1.views import app_views
 
 
@@ -26,6 +25,7 @@ def get_model(model=None, model_id=None):
     
     try:
         if model_id:
+            classes = classes_commerce | classes_account
             db_model = storage.get(classes[model], model_id)
             if db_model:
                 return jsonify(db_model.to_dict())

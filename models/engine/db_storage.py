@@ -25,12 +25,14 @@ from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family,
+classes_commerce = {"depot_detail": DepotDetail, "operation": Operation, "family": Family,
            "item_cat": ItemCategory, "sector": Sector, #"deposit_detail": DepositDetail,
            "pay_mode": PayMode, "supplier_type": SupplierType, "supplier": Supplier,
            "supplier_contact": SupplierContact, "item": Item, "depot_map": DepotMap,
            "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
            }#"user_account": UserAccount}
+
+classes_account = {}
 
 
 class DBStorage:
@@ -61,12 +63,12 @@ class DBStorage:
     def all(self, cls=None, cond=None, db=Database.COMMERCE):
         """query on the current database session"""
         new_dict = {}
-        class_dict = classes.copy()
+        class_dict = (classes_commerce | classes_account).copy()
         if cls:
             class_dict = {cls.__class__.__name__: cls}
         for my_class in class_dict.values():
             if not cond:
-                objs = self.__sessions[1].query(my_class).all()
+                objs = self.__sessions[db.value].query(my_class).all()
             else:
                 objs = self.__sessions[db.value].query(my_class).filter(eval(cond)).all()
             for obj in objs:
@@ -99,14 +101,17 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__sessions[db.value].remove()
 
-    def get(self, cls, id, db=Database.COMMERCE):
+    def get(self, cls, id):
         """
         Returns the object based on the class name and its ID, or
         None if not found
         """
+        classes = classes_commerce | classes_account
+
         if cls not in classes.values():
             return None
 
+        db = Database.COMMERCE if cls in classes_commerce.values() else Database.ACCOUNT
         all_cls = models.storage.all(cls, db=db)
 
         for value in all_cls.values():
@@ -119,6 +124,8 @@ class DBStorage:
         """
         count the number of objects in storage
         """
+        classes = classes_commerce | classes_account
+
         all_class = classes.values()
 
         if not cls:
