@@ -109,7 +109,7 @@ class DBStorage:
         if cls not in classes.values():
             return None
 
-        all_cls = models.storage.all(cls, db)
+        all_cls = models.storage.all(cls, db=db)
 
         for value in all_cls.values():
             obj_id = "-".join([str(getattr(value, key.name)) for key in inspect(cls).primary_key])
