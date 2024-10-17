@@ -20,7 +20,7 @@ from models.depot import Depot
 from models.item import Item
 from models.barcode import Barcode
 from models.client_account import ClientAccount
-from models.user_account import UserAccount
+# from models.user_account import UserAccount
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -30,7 +30,7 @@ classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family
            "pay_mode": PayMode, "supplier_type": SupplierType, "supplier": Supplier,
            "supplier_contact": SupplierContact, "item": Item, "depot_map": DepotMap,
            "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
-           "user_account": UserAccount}
+           }#"user_account": UserAccount}
 
 
 class DBStorage:
