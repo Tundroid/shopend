@@ -12,6 +12,7 @@ class Item(BaseModel, Base):
     """ Representation of Item """
     if models.storage_t == "db":
         __tablename__ = 'item'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(Integer, primary_key=True, autoincrement=True)
         item_name = Column(String(50), nullable=False, unique=True)
