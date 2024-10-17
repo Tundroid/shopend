@@ -20,7 +20,7 @@ class UserAccount(BaseModel, Base):
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 
         acc_type_rel = relationship('AccountType', backref='user_accounts')
-        account_rel = relationship('Account', backref='user_account')
+        account_rel = relationship('Account', primaryjoin='UserAccount.id == Account.id', backref='user_account')
 
     def __init__(self, *args, **kwargs):
         """ UserAccount initialization """
