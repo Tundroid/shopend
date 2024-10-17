@@ -58,7 +58,7 @@ class DBStorage:
         if APP_ENV == "test":
             pass
 
-    def all(self, db=Database.COMMERCE, cls=None, cond=None):
+    def all(self, cls=None, cond=None, db=Database.COMMERCE):
         """query on the current database session"""
         new_dict = {}
         class_dict = classes.copy()
