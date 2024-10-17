@@ -11,6 +11,7 @@ class Depot(BaseModel, Base):
     """ Representation of Depot """
     if models.storage_t == "db":
         __tablename__ = 'depot'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         depot = Column(SmallInteger, ForeignKey('mole_commerce.depot_detail.id'), nullable=False)
         item_id = Column(Integer, ForeignKey('mole_commerce.item.id'), nullable=False)
