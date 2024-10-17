@@ -33,7 +33,7 @@ classes_commerce = {"depot_detail": DepotDetail, "operation": Operation, "family
            "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
            }#"user_account": UserAccount}
 
-classes_account = {"account_type", AccountType }
+classes_account = {"account_type": AccountType }
 
 
 class DBStorage:
