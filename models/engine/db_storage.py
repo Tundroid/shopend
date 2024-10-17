@@ -47,25 +47,26 @@ class DBStorage:
         APP_MYSQL_USER = "test"
         APP_MYSQL_PWD = "test"
         APP_MYSQL_HOST = "172.19.128.1"
-        APP_MYSQL_DB = "mole_commerce"
+        APP_MYSQL_DB_COMMERCE = "mole_commerce"
+        APP_MYSQL_DB_ACCOUNT = "mole_account"
         APP_ENV = "dev"
         self.__engines[Database.ACCOUNT.value] = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(APP_MYSQL_USER,
                                              APP_MYSQL_PWD,
                                              APP_MYSQL_HOST,
-                                             "mole_account"))
+                                             APP_MYSQL_DB_ACCOUNT))
         self.__engines[Database.COMMERCE.value] = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(APP_MYSQL_USER,
                                              APP_MYSQL_PWD,
                                              APP_MYSQL_HOST,
-                                             APP_MYSQL_DB))
+                                             APP_MYSQL_DB_COMMERCE))
         if APP_ENV == "test":
             pass
 
     def all(self, cls=None, cond=None, db=Database.COMMERCE):
         """query on the current database session"""
         new_dict = {}
-        class_dict = (classes_commerce | classes_account).copy()
+        class_dict = classes_commerce | classes_account
         if cls:
             class_dict = {cls.__class__.__name__: cls}
         for my_class in class_dict.values():
@@ -94,15 +95,16 @@ class DBStorage:
 
     def reload(self):
         """reloads data from the database"""
+        # TODO try to create all db with the following
         # Base.metadata.create_all(self.__engine)
         for i in range(2):
             sess_factory = sessionmaker(bind=self.__engines[i], expire_on_commit=False)
-            Session = scoped_session(sess_factory)
-            self.__sessions[i] = Session
+            self.__sessions[i] = scoped_session(sess_factory)
 
-    def close(self, db=Database.COMMERCE):
+    def close(self):
         """call remove() method on the private session attribute"""
-        self.__sessions[db.value].remove()
+        for i in range(2):
+            self.__sessions[i].remove()
 
     def get(self, cls, id):
         """

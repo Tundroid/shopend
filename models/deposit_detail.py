@@ -12,6 +12,7 @@ class DepositDetail(BaseModel, Base):
     """ Representation of Deposit Detail """
     if models.storage_t == "db":
         __tablename__ = 'deposit_detail'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         batch = Column(String(50), primary_key=True)
         d_date = Column(Date, nullable=False)
