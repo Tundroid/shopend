@@ -1,22 +1,20 @@
 #!/usr/bin/python
-""" Barcode class """
+""" AccountType class """
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Integer, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, SmallInteger, String
 
 
-class Barcode(BaseModel, Base):
-    """ Representation of Barcode """
+class AccountType(BaseModel, Base):
+    """ Representation of Account Type """
     if models.storage_t == "db":
-        __tablename__ = 'barcode'
+        __tablename__ = 'acc_type'
+        __table_args__ = {'schema': 'mole_account'}
 
-        barcode = Column(String(50), primary_key=True)
-        item = Column(Integer, ForeignKey('item.id'), nullable=False)
-
-        item_rel = relationship('Item', backref='barcodes')
+        id = Column(SmallInteger, primary_key=True, autoincrement=True)
+        type_name = Column(String(50), nullable=False, unique=True)
 
     def __init__(self, *args, **kwargs):
-        """ Barcode initialization """
+        """ AccountType initialization """
         super().__init__(*args, **kwargs)
