@@ -11,6 +11,7 @@ class Family(BaseModel, Base):
     """ Representation of Family """
     if models.storage_t == "db":
         __tablename__ = 'family'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         fam_name = Column(String(50), nullable=False, unique=True)

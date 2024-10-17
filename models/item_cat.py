@@ -11,6 +11,7 @@ class ItemCategory(BaseModel, Base):
     """ Representation of Item Category """
     if models.storage_t == "db":
         __tablename__ = 'item_cat'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         cat_name = Column(String(50), nullable=False, unique=True)

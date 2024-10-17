@@ -11,6 +11,7 @@ class Barcode(BaseModel, Base):
     """ Representation of Barcode """
     if models.storage_t == "db":
         __tablename__ = 'barcode'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         barcode = Column(String(50), primary_key=True)
         item = Column(Integer, ForeignKey('item.id'), nullable=False)

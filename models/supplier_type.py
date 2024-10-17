@@ -11,6 +11,7 @@ class SupplierType(BaseModel, Base):
     """ Representation of Supplier Type """
     if models.storage_t == "db":
         __tablename__ = 'sup_type'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         st_name = Column(String(50), nullable=False, unique=True)

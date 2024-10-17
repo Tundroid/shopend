@@ -11,6 +11,7 @@ class Sector(BaseModel, Base):
     """ Representation of Sector """
     if models.storage_t == "db":
         __tablename__ = 'sector'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         sec_name = Column(String(50), nullable=False, unique=True)

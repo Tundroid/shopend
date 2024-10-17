@@ -12,6 +12,7 @@ class UserAccount(BaseModel, Base):
     """ Representation of User Account """
     if models.storage_t == "db":
         __tablename__ = 'user_account'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(SmallInteger, primary_key=True)
         acc_type = Column(SmallInteger, ForeignKey('acc_type.id'), nullable=False, default=3)

@@ -11,6 +11,7 @@ class PayMode(BaseModel, Base):
     """ Representation of Pay Mode """
     if models.storage_t == "db":
         __tablename__ = 'pay_mode'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         mode_name = Column(String(50), nullable=False, unique=True)
