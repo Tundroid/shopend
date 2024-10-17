@@ -24,8 +24,8 @@ def get_model(model=None, model_id=None):
         abort(400, description="Model is required")
     
     try:
+        classes = classes_commerce | classes_account
         if model_id:
-            classes = classes_commerce | classes_account
             db_model = storage.get(classes[model], model_id)
             if db_model:
                 return jsonify(db_model.to_dict())
