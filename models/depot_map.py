@@ -13,9 +13,9 @@ class DepotMap(BaseModel, Base):
         __tablename__ = 'depot_map'
         __table_args__ = {'schema': 'mole_commerce'}
 
-        source = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
-        destination = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
-        operation = Column(SmallInteger, ForeignKey('operation.id'), nullable=False)
+        source = Column(SmallInteger, ForeignKey('mole_commerce.depot_detail.id'), nullable=False)
+        destination = Column(SmallInteger, ForeignKey('mole_commerce.depot_detail.id'), nullable=False)
+        operation = Column(SmallInteger, ForeignKey('mole_commerce.operation.id'), nullable=False)
 
         __table_args__ = (
             PrimaryKeyConstraint('source', 'destination', 'operation'),
