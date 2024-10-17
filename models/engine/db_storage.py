@@ -92,12 +92,13 @@ class DBStorage:
         if obj is not None:
             self.__sessions[db.value].delete(obj)
 
-    def reload(self, db=Database.COMMERCE):
+    def reload(self):
         """reloads data from the database"""
         # Base.metadata.create_all(self.__engine)
-        sess_factory = sessionmaker(bind=self.__engines[db.value], expire_on_commit=False)
-        Session = scoped_session(sess_factory)
-        self.__sessions[db.value] = Session
+        for i in range(2):
+            sess_factory = sessionmaker(bind=self.__engines[i], expire_on_commit=False)
+            Session = scoped_session(sess_factory)
+            self.__sessions[i] = Session
 
     def close(self, db=Database.COMMERCE):
         """call remove() method on the private session attribute"""
