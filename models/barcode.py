@@ -14,7 +14,7 @@ class Barcode(BaseModel, Base):
         __table_args__ = {'schema': 'mole_commerce'}
 
         barcode = Column(String(50), primary_key=True)
-        item = Column(Integer, ForeignKey('item.id'), nullable=False)
+        item = Column(Integer, ForeignKey('mole_commerce.item.id'), nullable=False)
 
         item_rel = relationship('Item', backref='barcodes')
 

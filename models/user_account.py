@@ -15,7 +15,7 @@ class UserAccount(BaseModel, Base):
         __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(SmallInteger, primary_key=True)
-        acc_type = Column(SmallInteger, ForeignKey('acc_type.id'), nullable=False, default=3)
+        acc_type = Column(SmallInteger, ForeignKey('mole_account.acc_type.id'), nullable=False, default=3)
         is_active = Column(Boolean, nullable=False, default=True)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 

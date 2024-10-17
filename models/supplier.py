@@ -16,7 +16,7 @@ class Supplier(BaseModel, Base):
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         sup_name = Column(String(50), nullable=False, unique=True)
-        sup_type = Column(SmallInteger, ForeignKey('sup_type.id'), nullable=False)
+        sup_type = Column(SmallInteger, ForeignKey('mole_commerce.sup_type.id'), nullable=False)
         sup_desc = Column(Text)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 

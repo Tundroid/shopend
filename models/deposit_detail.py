@@ -15,7 +15,7 @@ class DepositDetail(BaseModel, Base):
 
         batch = Column(String(50), primary_key=True)
         d_date = Column(Date, nullable=False)
-        app_user = Column(SmallInteger, ForeignKey('user_account.id'), nullable=False)
+        app_user = Column(SmallInteger, ForeignKey('mole_commerce.user_account.id'), nullable=False)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 
         user_account = relationship('UserAccount', backref='deposit_details')
