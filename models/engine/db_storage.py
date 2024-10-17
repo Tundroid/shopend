@@ -66,10 +66,8 @@ class DBStorage:
             class_dict = {cls.__class__.__name__: cls}
         for my_class in class_dict.values():
             if not cond:
-                print("yesss", my_class)
                 objs = self.__sessions[1].query(my_class).all()
             else:
-                print("yooo", cond, type(cond))
                 objs = self.__sessions[db.value].query(my_class).filter(eval(cond)).all()
             for obj in objs:
                 obj_id = "-".join([str(getattr(obj, k.name)) for k in inspect(cls).primary_key])

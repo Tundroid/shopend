@@ -27,7 +27,6 @@ class BaseModel:
         """Initialization of the base model"""
         if kwargs:
             for key, value in kwargs.items():
-                print(f"creating...\n{key}: {value}")
                 if key != "__class__":
                     setattr(self, key, value)
 
