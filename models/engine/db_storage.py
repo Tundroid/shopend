@@ -21,6 +21,7 @@ from models.item import Item
 from models.barcode import Barcode
 from models.client_account import ClientAccount
 from models.account_type import AccountType
+from models.account import Account
 # from models.user_account import UserAccount
 from os import getenv
 from sqlalchemy import create_engine, inspect
@@ -33,7 +34,7 @@ classes_commerce = {"depot_detail": DepotDetail, "operation": Operation, "family
            "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
            }#"user_account": UserAccount}
 
-classes_account = {"account_type": AccountType }
+classes_account = {"account_type": AccountType, "account": Account }
 
 
 class DBStorage:
