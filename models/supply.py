@@ -11,7 +11,7 @@ class Supply(BaseModel, Base):
     """ Representation of Supply """
     if models.storage_t == "db":
         __tablename__ = 'supply'
-        __table_args__ = {'schema': 'mole_commerce'}
+        __table_args__ = {'schema': 'mole_commerce', 'primary_key': None}
 
         item = Column(Integer, ForeignKey('mole_commerce.item.id'))
         quantity = Column(Integer, nullable=False)
