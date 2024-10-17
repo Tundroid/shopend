@@ -10,6 +10,7 @@ class Operation(BaseModel, Base):
     """ Representation of Operation """
     if models.storage_t == "db":
         __tablename__ = 'operation'
+        __table_args__ = {'schema': 'mole_commerce'}
 
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         op_name = Column(String(50), nullable=False, unique=True)
