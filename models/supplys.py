@@ -12,7 +12,7 @@ class SupplyDetail(BaseModel, Base):
     """ Representation of Supply Detail """
     if models.storage_t == "db":
         __tablename__ = 'supply_detail'
-        __table_args__ = {'schema': 'mole_commerce', 'implicit_returning': False}
+        __table_args__ = {'schema': 'mole_commerce'}
 
         batch = Column(String(50), primary_key=True, unique=True)
         supplier = Column(SmallInteger, ForeignKey('mole_commerce.supplier.id'))
