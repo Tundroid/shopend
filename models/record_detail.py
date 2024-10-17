@@ -17,7 +17,7 @@ class RecordDetail(BaseModel, Base):
         batch = Column(String(50), primary_key=True)
         operation = Column(SmallInteger, ForeignKey('mole_commerce.operation.id'))
         receiver = Column(Integer, ForeignKey('mole_commerce.client_account.id'))
-        source_depot = Column(SmallInteger, ForeignKey('mole_commercedepot_detail.id'))
+        source_depot = Column(SmallInteger, ForeignKey('mole_commerce.depot_detail.id'))
         dest_depot = Column(SmallInteger, ForeignKey('mole_commerce.depot_detail.id'))
         rec_date = Column(Date, nullable=False)
         ref = Column(String(50), nullable=False)
