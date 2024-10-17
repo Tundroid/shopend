@@ -12,8 +12,8 @@ class Depot(BaseModel, Base):
     if models.storage_t == "db":
         __tablename__ = 'depot'
 
-        depot = Column(SmallInteger, ForeignKey('depot_detail.id'), nullable=False)
-        item_id = Column(Integer, ForeignKey('item.id'), nullable=False)
+        depot = Column(SmallInteger, ForeignKey('mole_commerce.depot_detail.id'), nullable=False)
+        item_id = Column(Integer, ForeignKey('mole_commerce.item.id'), nullable=False)
         stock = Column(Integer, nullable=False, default=0)
 
         __table_args__ = (
