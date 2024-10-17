@@ -45,12 +45,12 @@ class DBStorage:
         APP_MYSQL_HOST = "172.19.128.1"
         APP_MYSQL_DB = "mole_commerce"
         APP_ENV = "dev"
-        self.__engines[Database.ACCOUNT] = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+        self.__engines[Database.ACCOUNT.value] = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(APP_MYSQL_USER,
                                              APP_MYSQL_PWD,
                                              APP_MYSQL_HOST,
                                              "mole_account"))
-        self.__engines[Database.COMMERCE] = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+        self.__engines[Database.COMMERCE.value] = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(APP_MYSQL_USER,
                                              APP_MYSQL_PWD,
                                              APP_MYSQL_HOST,
@@ -66,9 +66,9 @@ class DBStorage:
             class_dict = {cls.__class__.__name__: cls}
         for my_class in class_dict.values():
             if not cond:
-                objs = self.__sessions[db].query(my_class).all()
+                objs = self.__sessions[db.value].query(my_class).all()
             else:
-                objs = self.__sessions[db].query(my_class).filter(eval(cond)).all()
+                objs = self.__sessions[db.value].query(my_class).filter(eval(cond)).all()
             for obj in objs:
                 obj_id = "-".join([str(getattr(obj, k.name)) for k in inspect(cls).primary_key])
                 key = f"{obj.__class__.__name__}.{obj_id}"
@@ -77,27 +77,27 @@ class DBStorage:
 
     def new(self, obj, db=Database.COMMERCE):
         """add the object to the current database session"""
-        self.__sessions[db].add(obj)
+        self.__sessions[db.value].add(obj)
 
     def save(self, db=Database.COMMERCE):
         """commit all changes of the current database session"""
-        self.__sessions[db].commit()
+        self.__sessions[db.value].commit()
 
     def delete(self, obj=None, db=Database.COMMERCE):
         """delete from the current database session obj if not None"""
         if obj is not None:
-            self.__sessions[db].delete(obj)
+            self.__sessions[db.value].delete(obj)
 
     def reload(self, db=Database.COMMERCE):
         """reloads data from the database"""
         # Base.metadata.create_all(self.__engine)
-        sess_factory = sessionmaker(bind=self.__engines[db], expire_on_commit=False)
+        sess_factory = sessionmaker(bind=self.__engines[db.value], expire_on_commit=False)
         Session = scoped_session(sess_factory)
-        self.__sessions[db] = Session
+        self.__sessions[db.value] = Session
 
     def close(self, db=Database.COMMERCE):
         """call remove() method on the private session attribute"""
-        self.__sessions[db].remove()
+        self.__sessions[db.value].remove()
 
     def get(self, cls, id, db=Database.COMMERCE):
         """
