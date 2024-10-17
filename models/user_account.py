@@ -1,24 +1,26 @@
 #!/usr/bin/python
-""" ClientAccount class """
+""" UserAccount class """
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, SmallInteger, Enum, Boolean, Integer, TIMESTAMP
+from sqlalchemy import Column, SmallInteger, Boolean, ForeignKey, TIMESTAMP
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 
-class ClientAccount(BaseModel, Base):
-    """ Representation of Client Account """
+class UserAccount(BaseModel, Base):
+    """ Representation of User Account """
     if models.storage_t == "db":
-        __tablename__ = 'client_account'
+        __tablename__ = 'user_account'
 
-        id = Column(SmallInteger, primary_key=True, autoincrement=True)
-        acc_name = Column(String(50), nullable=False, unique=True)
-        acc_type = Column(Enum('Consumer', 'Worker', 'Both'), nullable=False, default='Consumer')
+        id = Column(SmallInteger, primary_key=True)
+        acc_type = Column(SmallInteger, ForeignKey('acc_type.id'), nullable=False, default=3)
         is_active = Column(Boolean, nullable=False, default=True)
-        credit_limit = Column(Integer, nullable=False, default=25000)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 
+        acc_type_rel = relationship('AccType', backref='user_accounts')
+        account_rel = relationship('Account', backref='user_account')
+
     def __init__(self, *args, **kwargs):
-        """ ClientAccount initialization """
+        """ UserAccount initialization """
         super().__init__(*args, **kwargs)

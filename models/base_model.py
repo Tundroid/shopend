@@ -4,6 +4,7 @@ Contains class BaseModel
 """
 
 import models
+import enum
 from sqlalchemy import inspect
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -14,6 +15,10 @@ if models.storage_t == "db":
 else:
     Base = object
 
+
+class Database(enum.Enum):
+    ACCOUNT = 0
+    COMMERCE = 1
 
 class BaseModel:
     """The BaseModel class from which future classes will be derived"""
