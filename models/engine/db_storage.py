@@ -69,7 +69,7 @@ class DBStorage:
                 print(my_class)
                 objs = self.__sessions[1].query(my_class).all()
             else:
-                print(cond, type(cond))
+                print("yooo", cond, type(cond))
                 objs = self.__sessions[db.value].query(my_class).filter(eval(cond)).all()
             for obj in objs:
                 obj_id = "-".join([str(getattr(obj, k.name)) for k in inspect(cls).primary_key])
