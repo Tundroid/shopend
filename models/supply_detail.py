@@ -1,34 +1,36 @@
 #!/usr/bin/python
-""" SupplyDetail class """
+""" Supply class """
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, SmallInteger, Integer, Date, Text, TIMESTAMP, ForeignKey, Boolean
-from sqlalchemy.sql import func
+from sqlalchemy import Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class SupplyDetail(BaseModel, Base):
-    """ Representation of Supply Detail """
+class Supply(BaseModel, Base):
+    """ Representation of Supply """
     if models.storage_t == "db":
-        __tablename__ = 'supply_detail'
+        __tablename__ = 'supply'
         __table_args__ = {'schema': 'mole_commerce'}
 
-        batch = Column(String(50), primary_key=True, unique=True)
-        supplier = Column(SmallInteger, ForeignKey('mole_commerce.supplier.id'))
-        sup_date = Column(Date, nullable=False)
-        receiver = Column(Integer, ForeignKey('mole_commerce.client_account.id'))
-        ref = Column(String(50), nullable=False)
-        app_user = Column(Integer, ForeignKey('mole_commerce.user_account.id'))
-        is_stocked = Column(Boolean, nullable=False, default=False)
-        sup_desc = Column(Text)
-        datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
+        item = Column(Integer(unsigned=True), ForeignKey('mole_commerce.item.id'))
+        quantity = Column(Integer(unsigned=True), nullable=False)
+        unit_cost = Column(Integer(unsigned=True), nullable=False)
+        expiry = Column(Date, nullable=False)
+        batch = Column(String(50), ForeignKey('mole_commerce.supply_detail.batch'))
 
         # Establish relationships
-        supplier_rel = relationship('Supplier', backref='supply_details')
-        receiver_rel = relationship('ClientAccount', backref='supply_details')
-        app_user_rel = relationship('UserAccount', backref='supply_details')
+        item_rel = relationship('Item', backref='supplies')
+        batch_rel = relationship('SupplyDetail', backref='supplies')
+
+        # Virtual column (not explicitly defined)
+        # total = Column(Integer, computed=lambda: self.quantity * self.unit_cost)
+        # Alternatively, use @hybrid_property
+        @property
+        def total(self):
+            """Computed total cost"""
+            return self.quantity * self.unit_cost
 
     def __init__(self, *args, **kwargs):
-        """ SupplyDetail initialization """
+        """ Supply initialization """
         super().__init__(*args, **kwargs)
