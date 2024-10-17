@@ -35,8 +35,8 @@ classes = {"depot_detail": DepotDetail, "operation": Operation, "family": Family
 
 class DBStorage:
     """interaacts with the MySQL database"""
-    __engines = (None, None,)
-    __sessions = (None, None,)
+    __engines = [None, None]
+    __sessions = [None, None]
 
     def __init__(self):
         """Instantiate a DBStorage object"""
