@@ -15,11 +15,11 @@ class SupplyDetail(BaseModel, Base):
         __table_args__ = {'schema': 'mole_commerce'}
 
         batch = Column(String(50), primary_key=True, unique=True)
-        supplier = Column(SmallInteger, ForeignKey('supplier.id'))
+        supplier = Column(SmallInteger, ForeignKey('mole_commerce.supplier.id'))
         sup_date = Column(Date, nullable=False)
-        receiver = Column(Integer, ForeignKey('client_account.id'))
+        receiver = Column(Integer, ForeignKey('mole_commerce.client_account.id'))
         ref = Column(String(50), nullable=False)
-        app_user = Column(Integer, ForeignKey('user_account.id'))
+        app_user = Column(Integer, ForeignKey('mole_commerce.user_account.id'))
         is_stocked = Column(Boolean, nullable=False, default=False)
         sup_desc = Column(Text)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
