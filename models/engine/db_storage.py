@@ -21,7 +21,7 @@ from models.item import Item
 from models.barcode import Barcode
 from models.client_account import ClientAccount
 from models.account_type import AccountType
-# from models.account import Account
+from models.account import Account
 # from models.user_account import UserAccount
 from os import getenv
 from sqlalchemy import create_engine, inspect
@@ -34,7 +34,7 @@ classes_commerce = {"depot_detail": DepotDetail, "operation": Operation, "family
            "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
            }#"user_account": UserAccount}
 
-classes_account = {"account_type": AccountType}#, "account": Account }
+classes_account = {"account_type": AccountType, "account": Account }
 
 
 class DBStorage:
@@ -70,7 +70,6 @@ class DBStorage:
             class_dict = {cls.__class__.__name__: cls}
         for my_class in class_dict.values():
             if not cond:
-                print(cls, db.value)
                 objs = self.__sessions[db.value].query(my_class).all()
             else:
                 objs = self.__sessions[db.value].query(my_class).filter(eval(cond)).all()
