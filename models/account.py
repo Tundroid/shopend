@@ -21,7 +21,7 @@ class Account(BaseModel, Base):
         is_active = Column(Boolean, nullable=False, default=True)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 
-        acc_type_rel = relationship('AccType', backref='accounts')
+        acc_type_rel = relationship('AccountType', backref='accounts')
 
     def __init__(self, *args, **kwargs):
         """ Account initialization """
