@@ -19,7 +19,7 @@ class UserAccount(BaseModel, Base):
         is_active = Column(Boolean, nullable=False, default=True)
         datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
 
-        acc_type_rel = relationship('AccType', backref='user_accounts')
+        acc_type_rel = relationship('AccountType', backref='user_accounts')
         account_rel = relationship('Account', backref='user_account')
 
     def __init__(self, *args, **kwargs):
