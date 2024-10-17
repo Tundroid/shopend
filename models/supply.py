@@ -3,7 +3,7 @@
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, Integer, String, Date, ForeignKey
+from sqlalchemy import Column, Integer, String, Date, ForeignKey, BigInteger
 from sqlalchemy.orm import relationship
 
 
@@ -13,6 +13,7 @@ class Supply(BaseModel, Base):
         __tablename__ = 'supply'
         __table_args__ = {'schema': 'mole_commerce', 'mysql_engine': 'InnoDB', 'implicit_returning': False}
 
+        id = Column(BigInteger, primary_key=True, autoincrement=True)
         item = Column(Integer, ForeignKey('mole_commerce.item.id'))
         quantity = Column(Integer, nullable=False)
         unit_cost = Column(Integer, nullable=False)
