@@ -113,7 +113,7 @@ class DBStorage:
             return None
 
         db = Database.COMMERCE if cls in classes_commerce.values() else Database.ACCOUNT
-        all_cls = models.storage.all(cls, db=db)
+        all_cls = models.storage.all(cls=cls, db=db)
 
         for value in all_cls.values():
             obj_id = "-".join([str(getattr(value, key.name)) for key in inspect(cls).primary_key])
