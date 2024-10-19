@@ -10,7 +10,8 @@ from models.operation import Operation
 from models.family import Family
 from models.item_cat import ItemCategory
 from models.sector import Sector
-# from models.deposit_detail import DepositDetail
+from models.deposit_detail import DepositDetail
+from models.deposit import Deposit
 from models.supplier_contact import SupplierContact
 from models.supplier_type import SupplierType
 from models.supplier import Supplier
@@ -33,12 +34,13 @@ from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 classes_commerce = {"depot_detail": DepotDetail, "operation": Operation, "family": Family,
-           "item_cat": ItemCategory, "sector": Sector, #"deposit_detail": DepositDetail,
+           "item_cat": ItemCategory, "sector": Sector, "deposit_detail": DepositDetail,
            "pay_mode": PayMode, "supplier_type": SupplierType, "supplier": Supplier,
            "supplier_contact": SupplierContact, "item": Item, "depot_map": DepotMap,
            "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
            "user_account": UserAccount, "supply_detail": SupplyDetail, "supply": Supply,
-           "record_detail": RecordDetail, "record": Record}
+           "record_detail": RecordDetail, "record": Record, "payment": Payment,
+           "deposit": Deposit}
 
 classes_account = {"account_type": AccountType, "account": Account }
 
