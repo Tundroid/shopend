@@ -26,6 +26,7 @@ from models.account_type import AccountType
 from models.account import Account
 from models.user_account import UserAccount
 from models.record_detail import RecordDetail
+from models.record import Record
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -36,7 +37,7 @@ classes_commerce = {"depot_detail": DepotDetail, "operation": Operation, "family
            "supplier_contact": SupplierContact, "item": Item, "depot_map": DepotMap,
            "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
            "user_account": UserAccount, "supply_detail": SupplyDetail, "supply": Supply,
-           "record_detail": RecordDetail}
+           "record_detail": RecordDetail, "record": Record}
 
 classes_account = {"account_type": AccountType, "account": Account }
 
