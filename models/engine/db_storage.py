@@ -27,6 +27,7 @@ from models.account import Account
 from models.user_account import UserAccount
 from models.record_detail import RecordDetail
 from models.record import Record
+from models.payment import Payment
 from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
