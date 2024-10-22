@@ -29,15 +29,18 @@ def create_model(model=None):
         data = request.get_json(silent=True)
         if not data:
             abort(400, description="Valid JSON data required")
-        
-        db_model = classes[model](**data)
-        storage.new(db_model)
-        storage.save()
+
+        data = [data] if type(data) is dict else data
+        for piece in data:
+            db_model = classes[model](**piece)
+            storage.new(db_model)
+            storage.save()
         
         return jsonify(db_model.to_dict()), 201
     except (KeyError, ValueError) as e:
         return  abort(404, description=f"Model `{model}`")
-    except (IntegrityError):
+    except (IntegrityError) as e:
+        print(e.detail)
         return  abort(409, description=f"Resource already exists in Model `{model}`")
 
 
