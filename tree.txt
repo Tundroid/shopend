@@ -1,0 +1,116 @@
+.
+├── api
+│   ├── __init__.py
+│   ├── postman
+│   │   └── test.csv
+│   ├── __pycache__
+│   │   └── __init__.cpython-311.pyc
+│   └── v1
+│       ├── app.py
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   ├── app.cpython-311.pyc
+│       │   └── __init__.cpython-311.pyc
+│       └── views
+│           ├── creators.py
+│           ├── deleters.py
+│           ├── index.py
+│           ├── __init__.py
+│           ├── __pycache__
+│           │   ├── creators.cpython-311.pyc
+│           │   ├── deleters.cpython-311.pyc
+│           │   ├── depot_details.cpython-311.pyc
+│           │   ├── getters.cpython-311.pyc
+│           │   ├── index.cpython-311.pyc
+│           │   ├── __init__.cpython-311.pyc
+│           │   ├── operations.cpython-311.pyc
+│           │   ├── readers.cpython-311.pyc
+│           │   └── updaters.cpython-311.pyc
+│           ├── readers.py
+│           └── updaters.py
+├── AUTHORS
+├── cleaner.sh
+├── db
+│   ├── console
+│   ├── erd mysqlworkbench.pdf
+│   ├── erd phpMyAdmin.jpeg
+│   ├── gce_dump.sql
+│   ├── setup_mysql_dev.sql
+│   └── setup_mysql_test.sql
+├── models
+│   ├── account.py
+│   ├── account_type.py
+│   ├── barcode.py
+│   ├── base_model.py
+│   ├── client_account.py
+│   ├── deposit_detail.py
+│   ├── deposit.py
+│   ├── depot_detail.py
+│   ├── depot_map.py
+│   ├── depot.py
+│   ├── engine
+│   │   ├── db_storage.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── db_storage.cpython-311.pyc
+│   │       └── __init__.cpython-311.pyc
+│   ├── family.py
+│   ├── __init__.py
+│   ├── item_cat.py
+│   ├── item.py
+│   ├── operation.py
+│   ├── payment.py
+│   ├── pay_mode.py
+│   ├── __pycache__
+│   │   ├── account.cpython-311.pyc
+│   │   ├── account_type.cpython-311.pyc
+│   │   ├── barcode.cpython-311.pyc
+│   │   ├── base_model.cpython-311.pyc
+│   │   ├── client_account.cpython-311.pyc
+│   │   ├── deposit.cpython-311.pyc
+│   │   ├── deposit_detail.cpython-311.pyc
+│   │   ├── depot.cpython-311.pyc
+│   │   ├── depot_detail.cpython-311.pyc
+│   │   ├── depot_map.cpython-311.pyc
+│   │   ├── family.cpython-311.pyc
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── item_cat.cpython-311.pyc
+│   │   ├── item.cpython-311.pyc
+│   │   ├── operation.cpython-311.pyc
+│   │   ├── payment.cpython-311.pyc
+│   │   ├── pay_mode.cpython-311.pyc
+│   │   ├── record.cpython-311.pyc
+│   │   ├── record_detail.cpython-311.pyc
+│   │   ├── sector.cpython-311.pyc
+│   │   ├── supplier_contact.cpython-311.pyc
+│   │   ├── supplier.cpython-311.pyc
+│   │   ├── supplier_type.cpython-311.pyc
+│   │   ├── supply.cpython-311.pyc
+│   │   ├── supply_detail.cpython-311.pyc
+│   │   └── user_account.cpython-311.pyc
+│   ├── record_detail.py
+│   ├── record.py
+│   ├── sector.py
+│   ├── supplier_contact.py
+│   ├── supplier.py
+│   ├── supplier_type.py
+│   ├── supply_detail.py
+│   ├── supply.py
+│   └── user_account.py
+├── New folder
+│   └── test_main.py
+├── README.md
+├── tests
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   └── test_main.cpython-311.pyc
+│   └── test_api
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   ├── __init__.cpython-311.pyc
+│       │   └── test_readers.cpython-311.pyc
+│       └── test_readers.py
+└── tree.txt
+
+18 directories, 96 files
