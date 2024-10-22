@@ -18,8 +18,11 @@ class SupplierContact(BaseModel, Base):
         con_name = Column(String(50), nullable=False, unique=True)
         con_phone = Column(String(50), nullable=False)
         con_email = Column(String(50), nullable=False)
-        supplier = Column(SmallInteger, ForeignKey('mole_commerce.supplier.id'), nullable=False)
-        datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
+        supplier = Column(SmallInteger,
+                          ForeignKey('mole_commerce.supplier.id'),
+                          nullable=False)
+        datetime = Column(TIMESTAMP, nullable=False,
+                          server_default=func.current_timestamp())
 
         supplier_rel = relationship('Supplier', backref='sup_contacts')
 
