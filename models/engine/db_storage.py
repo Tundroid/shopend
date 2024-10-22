@@ -96,15 +96,6 @@ class DBStorage:
         """commit all changes of the current database session"""
         self.__sessions[db.value].commit()
 
-    def transaction(self, db=Database.COMMERCE):
-        sess = self.__sessions[db.value]
-        try:
-            yield sess
-            sess.commit()
-        except Exception:
-            sess.rollback()
-            raise
-
     def delete(self, obj, db=Database.COMMERCE):
         """delete from the current database session obj if not None"""
         if obj is not None:
