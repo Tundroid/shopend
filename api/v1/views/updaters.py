@@ -33,13 +33,13 @@ def update_model(model=None):
 
         data = [data] if type(data) is dict else data
         for piece in data:
-            db_model = storage.get(classes[model], inspect(classes[model]).primary_key[0].name)
+            db_model = storage.get(classes[model], piece[inspect(classes[model]).primary_key[0].name])
             for key, value in piece.items():
                 # if key not in ignore:
                 setattr(db_model, key, value)
         storage.save()
         
-        return jsonify(db_model.to_dict()), 201
+        return jsonify(db_model.to_dict()), 200
     except (KeyError, ValueError) as e:
         return  abort(404, description=f"Model `{model}`")
     except (IntegrityError) as e:
