@@ -47,3 +47,4 @@ from api.v1.views.index import *
 from api.v1.views.readers import *
 from api.v1.views.creators import *
 from api.v1.views.updaters import *
+from api.v1.views.deleters import *

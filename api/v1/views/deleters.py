@@ -31,9 +31,9 @@ def delete_model(model=None):
         if not data:
             abort(400, description="Valid JSON data required")
 
-        data = [data] if type(data) is dict else data
+        data = data["ids"]
         for piece in data:
-            db_model = storage.get(classes[model], piece[inspect(classes[model]).primary_key[0].name])
+            db_model = storage.get(classes[model], piece)
             storage.delete(db_model)
         storage.save()
         
