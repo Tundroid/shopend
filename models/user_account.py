@@ -14,10 +14,13 @@ class UserAccount(BaseModel, Base):
         __tablename__ = 'user_account'
         __table_args__ = {'schema': 'mole_commerce'}
 
-        id = Column(SmallInteger, ForeignKey('mole_account.account.id'), primary_key=True)
-        acc_type = Column(SmallInteger, ForeignKey('mole_account.acc_type.id'), nullable=False, default=3)
+        id = Column(SmallInteger, ForeignKey('mole_account.account.id'),
+                    primary_key=True)
+        acc_type = Column(SmallInteger, ForeignKey('mole_account.acc_type.id'),
+                          nullable=False, default=3)
         is_active = Column(Boolean, nullable=False, default=True)
-        datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
+        datetime = Column(TIMESTAMP, nullable=False,
+                          server_default=func.current_timestamp())
 
         acc_type_rel = relationship('AccountType', backref='user_accounts')
         account_rel = relationship('Account', backref='user_account')
