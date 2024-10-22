@@ -5,11 +5,14 @@ from flask import abort, jsonify
 from models.engine.db_storage import classes_commerce, classes_account
 from models import storage
 from api.v1.views import app_views
+from flask_jwt_extended import jwt_required
+
 
 
 @app_views.route("/get", methods=['GET'], strict_slashes=False)
 @app_views.route("/get/<model>", methods=['GET'], strict_slashes=False)
 @app_views.route("/get/<model>/<model_id>", methods=['GET'], strict_slashes=False)
+@jwt_required()
 def get_model(model=None, model_id=None):
     """Retrieve model or model instance details.
 

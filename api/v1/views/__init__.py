@@ -40,4 +40,5 @@ def check_auth_header(cls=None):
 
 
 from api.v1.views.index import *
-from api.v1.views.getters import *
+from api.v1.views.readers import *
+from api.v1.views.creators import *

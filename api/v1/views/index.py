@@ -11,10 +11,14 @@ from models.engine.db_storage import classes_account, classes_commerce
 from flask import Flask, request, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_jwt_extended import (
-    JWTManager, create_access_token, jwt_required, get_jwt_identity
+    create_access_token, jwt_required
 )
 
-from ..app import users
+# Example user database with hashed password
+users = {
+    "skfn": {"password": generate_password_hash("skfn")}
+}
+
 
 # Route to authenticate users and generate a JWT token
 @app_views.route('/login', methods=['POST'])
@@ -35,6 +39,7 @@ def login():
 
 
 @app_views.route("/status", strict_slashes=False)
+@jwt_required()  # This decorator protects the endpoint
 def status():
     """Returns the status in JSON format"""
     return jsonify({"status": "OK"})
