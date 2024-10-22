@@ -16,7 +16,8 @@ class ItemCategory(BaseModel, Base):
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         cat_name = Column(String(50), nullable=False, unique=True)
         cat_desc = Column(Text)
-        datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
+        datetime = Column(TIMESTAMP, nullable=False,
+                          server_default=func.current_timestamp())
 
     def __init__(self, *args, **kwargs):
         """ ItemCategory initialization """
