@@ -8,11 +8,29 @@ from flask_cors import CORS
 
 from models import storage
 from api.v1.views import app_views
+import os
+from datetime import datetime
+
+from werkzeug.security import check_password_hash, generate_password_hash
+from flask_jwt_extended import (
+    JWTManager, create_access_token, jwt_required, get_jwt_identity
+)
 
 app = Flask(__name__)
 # CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
 CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(app_views)
+
+# Configure the secret key for JWT
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'your_default_secret_key')  # Use environment variable in production
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(hours=1)  # Token expiration time: 1 hour
+jwt = JWTManager(app)
+
+# Example user database with hashed password
+users = {
+    "example_user": {"password": generate_password_hash("example_password")}
+}
+
 
 
 @app.teardown_appcontext
