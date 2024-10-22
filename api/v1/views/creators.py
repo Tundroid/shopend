@@ -6,6 +6,7 @@ from models.engine.db_storage import classes_commerce, classes_account
 from models import storage
 from api.v1.views import app_views
 from flask_jwt_extended import jwt_required
+from sqlalchemy.exc import IntegrityError
 
 @app_views.route("/create", methods=['POST'], strict_slashes=False)
 @app_views.route("/create/<model>", methods=['POST'], strict_slashes=False)
@@ -36,6 +37,8 @@ def create_model(model=None):
         return jsonify(db_model.to_dict()), 201
     except (KeyError, ValueError) as e:
         return  abort(404, description=f"Model `{model}`")
+    except (IntegrityError):
+        return  abort(409, description=f"Resource already exists in Model `{model}`")
 
 
 @app_views.route("/create/<model>/<foreign_key>", methods=['POST'], strict_slashes=False)
