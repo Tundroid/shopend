@@ -16,7 +16,8 @@ class PayMode(BaseModel, Base):
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         mode_name = Column(String(50), nullable=False, unique=True)
         is_active = Column(Boolean, nullable=False, default=True)
-        datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
+        datetime = Column(TIMESTAMP, nullable=False,
+                          server_default=func.current_timestamp())
 
     def __init__(self, *args, **kwargs):
         """ PayMode initialization """
