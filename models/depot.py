@@ -3,7 +3,9 @@
 
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, SmallInteger, Integer, ForeignKey, PrimaryKeyConstraint
+from sqlalchemy import (
+    Column, SmallInteger, Integer, ForeignKey, PrimaryKeyConstraint
+)
 from sqlalchemy.orm import relationship
 
 
@@ -13,8 +15,11 @@ class Depot(BaseModel, Base):
         __tablename__ = 'depot'
         __table_args__ = {'schema': 'mole_commerce'}
 
-        depot = Column(SmallInteger, ForeignKey('mole_commerce.depot_detail.id'), nullable=False)
-        item_id = Column(Integer, ForeignKey('mole_commerce.item.id'), nullable=False)
+        depot = Column(SmallInteger,
+                       ForeignKey('mole_commerce.depot_detail.id'),
+                       nullable=False)
+        item_id = Column(Integer,
+                         ForeignKey('mole_commerce.item.id'), nullable=False)
         stock = Column(Integer, nullable=False, default=0)
 
         __table_args__ = (
