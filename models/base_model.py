@@ -20,6 +20,7 @@ class Database(enum.Enum):
     ACCOUNT = 0
     COMMERCE = 1
 
+
 class BaseModel:
     """The BaseModel class from which future classes will be derived"""
 
