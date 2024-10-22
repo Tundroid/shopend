@@ -1,2 +1,2 @@
-# CGCEB_Online
-Online registration for Cameroon Generation Certification of Education Board
+# SHOPEND
+shop management system v0.1
