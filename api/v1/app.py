@@ -36,12 +36,7 @@ def close(exception):
 @app.errorhandler(404)
 def not_found(e):
     '''Returns the JSON {"error": "Not found"} if resource wasn't found'''
-    return {"error": "Not found"}, e.code
-
-@app.errorhandler(409)
-def conflict(e):
-    '''Returns the JSON {"error": "Resource already exists in <Model>"} if resource exists already'''
-    return {"error": "Duplicate resource"}, e.code
+    return {"error": "Not founds"}, e.code
 
 
 if __name__ == "__main__":

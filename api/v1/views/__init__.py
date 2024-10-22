@@ -14,6 +14,11 @@ def handle_bad_request(error):
 def handle_not_found(error):
     return jsonify({"type": "error", "message": str(error)}), 404
 
+@app_views.errorhandler(409)
+def handle_conflict(error):
+    return jsonify({"type": "error", "message": str(error)}), 404
+    # return {"error": "Duplicate resource"}, error.code
+
 def check_auth_header(cls=None):
     auth_header = request.headers.get('Authorization')
     if not auth_header:
