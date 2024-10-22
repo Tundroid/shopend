@@ -7,12 +7,13 @@ from models import storage
 from api.v1.views import app_views
 from flask_jwt_extended import jwt_required
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import inspect
 
-@app_views.route("/create", methods=['POST'], strict_slashes=False)
-@app_views.route("/create/<model>", methods=['POST'], strict_slashes=False)
+@app_views.route("/update", methods=['PUT'], strict_slashes=False)
+@app_views.route("/update/<model>", methods=['PUT'], strict_slashes=False)
 @jwt_required()
-def create_model(model=None):
-    """Create a new model instance.
+def update_model(model=None):
+    """Update a new model instance.
 
     Args:
         model (str): The model name.
@@ -32,8 +33,10 @@ def create_model(model=None):
 
         data = [data] if type(data) is dict else data
         for piece in data:
-            db_model = classes[model](**piece)
-            storage.new(db_model)
+            db_model = storage.get(classes[model], inspect(classes[model]).primary_key[0].name)
+            for key, value in piece.items():
+                # if key not in ignore:
+                setattr(db_model, key, value)
         storage.save()
         
         return jsonify(db_model.to_dict()), 201
@@ -41,5 +44,3 @@ def create_model(model=None):
         return  abort(404, description=f"Model `{model}`")
     except (IntegrityError) as e:
         return  abort(409, description=f"Resource already exists in Model `{model}`")
-
-
