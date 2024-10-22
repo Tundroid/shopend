@@ -33,16 +33,35 @@ from os import getenv
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes_commerce = {"depot_detail": DepotDetail, "operation": Operation, "family": Family,
-           "item_cat": ItemCategory, "sector": Sector, "deposit_detail": DepositDetail,
-           "pay_mode": PayMode, "supplier_type": SupplierType, "supplier": Supplier,
-           "supplier_contact": SupplierContact, "item": Item, "depot_map": DepotMap,
-           "depot": Depot, "barcode": Barcode, "client_account": ClientAccount,
-           "user_account": UserAccount, "supply_detail": SupplyDetail, "supply": Supply,
-           "record_detail": RecordDetail, "record": Record, "payment": Payment,
-           "deposit": Deposit}
+classes_commerce = {
+    "barcode": Barcode,
+    "client_account": ClientAccount,
+    "deposit": Deposit,
+    "deposit_detail": DepositDetail,
+    "depot": Depot,
+    "depot_detail": DepotDetail,
+    "depot_map": DepotMap,
+    "family": Family,
+    "item": Item,
+    "item_cat": ItemCategory,
+    "operation": Operation,
+    "pay_mode": PayMode,
+    "payment": Payment,
+    "record": Record,
+    "record_detail": RecordDetail,
+    "sector": Sector,
+    "supplier": Supplier,
+    "supplier_contact": SupplierContact,
+    "supplier_type": SupplierType,
+    "supply": Supply,
+    "supply_detail": SupplyDetail,
+    "user_account": UserAccount,
+}
 
-classes_account = {"account_type": AccountType, "account": Account }
+classes_account = {
+    "account": Account,
+    "account_type": AccountType
+}
 
 
 class DBStorage:
@@ -58,16 +77,21 @@ class DBStorage:
         APP_MYSQL_DB_COMMERCE = "mole_commerce"
         APP_MYSQL_DB_ACCOUNT = "mole_account"
         APP_ENV = "dev"
-        self.__engines[Database.ACCOUNT.value] = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(APP_MYSQL_USER,
-                                             APP_MYSQL_PWD,
-                                             APP_MYSQL_HOST,
-                                             APP_MYSQL_DB_ACCOUNT))
-        self.__engines[Database.COMMERCE.value] = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(APP_MYSQL_USER,
-                                             APP_MYSQL_PWD,
-                                             APP_MYSQL_HOST,
-                                             APP_MYSQL_DB_COMMERCE))
+        self.__engines[Database.ACCOUNT.value] = create_engine(
+            'mysql+mysqldb://{}:{}@{}/{}'
+            .format(
+                    APP_MYSQL_USER,
+                    APP_MYSQL_PWD,
+                    APP_MYSQL_HOST,
+                    APP_MYSQL_DB_ACCOUNT)
+            )
+        self.__engines[Database.COMMERCE.value] = create_engine(
+            'mysql+mysqldb://{}:{}@{}/{}'
+            .format(
+                    APP_MYSQL_USER,
+                    APP_MYSQL_PWD,
+                    APP_MYSQL_HOST,
+                    APP_MYSQL_DB_COMMERCE))
         if APP_ENV == "test":
             pass
 
@@ -81,9 +105,11 @@ class DBStorage:
             if not cond:
                 objs = self.__sessions[db.value].query(my_class).all()
             else:
-                objs = self.__sessions[db.value].query(my_class).filter(eval(cond)).all()
+                objs = (self.__sessions[db.value].query(my_class)
+                        .filter(eval(cond)).all())
             for obj in objs:
-                obj_id = "-".join([str(getattr(obj, k.name)) for k in inspect(cls).primary_key])
+                obj_id = ("-".join([str(getattr(obj, k.name))
+                                    for k in inspect(cls).primary_key]))
                 key = f"{obj.__class__.__name__}.{obj_id}"
                 new_dict[key] = obj
         return (new_dict)
@@ -106,7 +132,8 @@ class DBStorage:
         # TODO try to create all db with the following
         # Base.metadata.create_all(self.__engine)
         for i in range(2):
-            sess_factory = sessionmaker(bind=self.__engines[i], expire_on_commit=False)
+            sess_factory = sessionmaker(bind=self.__engines[i],
+                                        expire_on_commit=False)
             self.__sessions[i] = scoped_session(sess_factory)
 
     def close(self):
@@ -124,11 +151,13 @@ class DBStorage:
         if cls not in classes.values():
             return None
 
-        db = Database.COMMERCE if cls in classes_commerce.values() else Database.ACCOUNT
+        db = (Database.COMMERCE if cls in classes_commerce.values()
+              else Database.ACCOUNT)
         all_cls = models.storage.all(cls=cls, db=db)
 
         for value in all_cls.values():
-            obj_id = "-".join([str(getattr(value, key.name)) for key in inspect(cls).primary_key])
+            obj_id = ("-".join([str(getattr(value, key.name))
+                                for key in inspect(cls).primary_key]))
             if (str(obj_id) == str(id)):
                 return value
         return None
