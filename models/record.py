@@ -19,7 +19,8 @@ class Record(BaseModel, Base):
         source_stock = Column(Integer, nullable=False)
         dest_stock = Column(Integer, nullable=False)
         amount = Column(Integer, nullable=False)
-        batch = Column(String(50), ForeignKey('mole_commerce.record_detail.batch'))
+        batch = Column(String(50),
+                       ForeignKey('mole_commerce.record_detail.batch'))
 
         # Establish relationships
         item_rel = relationship('Item', backref='records')

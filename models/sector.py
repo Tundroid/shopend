@@ -16,7 +16,8 @@ class Sector(BaseModel, Base):
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         sec_name = Column(String(50), nullable=False, unique=True)
         sec_desc = Column(Text)
-        datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
+        datetime = Column(TIMESTAMP, nullable=False,
+                          server_default=func.current_timestamp())
 
     def __init__(self, *args, **kwargs):
         """ Sector initialization """
