@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Contains class BaseModel
-"""
+"""  BaseModel class """
 
 import models
 import enum

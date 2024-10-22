@@ -4,7 +4,7 @@ Contains the class DBStorage
 """
 
 import models
-from models.base_model import BaseModel, Base, Database
+from models.base_model import Database
 from models.depot_detail import DepotDetail
 from models.operation import Operation
 from models.family import Family
@@ -71,12 +71,12 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        APP_MYSQL_USER = "test"
-        APP_MYSQL_PWD = "test"
-        APP_MYSQL_HOST = "172.19.128.1"
-        APP_MYSQL_DB_COMMERCE = "mole_commerce"
-        APP_MYSQL_DB_ACCOUNT = "mole_account"
-        APP_ENV = "dev"
+        APP_MYSQL_USER = getenv("MOLe_MYSQL_USER")
+        APP_MYSQL_PWD = getenv("MOLe_MYSQL_PWD")
+        APP_MYSQL_HOST = getenv("MOLe_MYSQL_HOST")
+        APP_MYSQL_DB_COMMERCE = getenv("MOLe_MYSQL_MAIN_DB")
+        APP_MYSQL_DB_ACCOUNT = getenv("MOLe_MYSQL_USER_ACC")
+        APP_ENV = getenv("MOLe_ENV")
         self.__engines[Database.ACCOUNT.value] = create_engine(
             'mysql+mysqldb://{}:{}@{}/{}'
             .format(
