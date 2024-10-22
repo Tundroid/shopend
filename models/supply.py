@@ -18,14 +18,16 @@ class Supply(BaseModel, Base):
         quantity = Column(Integer, nullable=False)
         unit_cost = Column(Integer, nullable=False)
         expiry = Column(Date, nullable=False)
-        batch = Column(String(50), ForeignKey('mole_commerce.supply_detail.batch'))
+        batch = Column(String(50),
+                       ForeignKey('mole_commerce.supply_detail.batch'))
 
         # Establish relationships
         item_rel = relationship('Item', backref='supplies')
         batch_rel = relationship('SupplyDetail', backref='supplies')
 
         # Virtual column (not explicitly defined)
-        # total = Column(Integer, computed=lambda: self.quantity * self.unit_cost)
+        # total = Column(Integer,
+        #               computed=lambda: self.quantity * self.unit_cost)
         # Alternatively, use @hybrid_property
         @property
         def total(self):
