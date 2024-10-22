@@ -16,7 +16,8 @@ class SupplierType(BaseModel, Base):
         id = Column(SmallInteger, primary_key=True, autoincrement=True)
         st_name = Column(String(50), nullable=False, unique=True)
         st_desc = Column(Text, nullable=False)
-        datetime = Column(TIMESTAMP, nullable=False, server_default=func.current_timestamp())
+        datetime = Column(TIMESTAMP, nullable=False,
+                          server_default=func.current_timestamp())
 
     def __init__(self, *args, **kwargs):
         """ SupplierType initialization """
